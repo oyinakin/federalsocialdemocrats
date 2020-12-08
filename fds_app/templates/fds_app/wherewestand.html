@@ -1,0 +1,59 @@
+{% extends 'fds_app/base6.html' %}
+{% load static %}
+{% block style %}
+body{
+background-color: #fff;
+}
+p{
+  font-size:16px;
+  color:#8E8E8E;
+}
+
+.triangle-up {
+    box-shadow: 0 0 8px 8px red inset;
+}
+.nav-item{
+  padding-right:1%
+}
+.nav-link.active
+{
+      font-weight: 500;
+      color: #fff;
+      background-color: #12302E;
+      margin-bottom: 0;
+      margin-top: 10px;
+      border-radius: 0;
+  }
+{% endblock%}
+{% block title %}FSD | Where We Stand{% endblock %}
+{% block links %}
+<li class="nav-item " style="padding-left: 2%;"><a class="nav-link" href="/whoweare">Who we are</a></li>
+<li class="nav-item " style=" padding-left: 2%;"><a class="nav-link active" href="/wherewestand">Where we stand </a></li>
+<li class="nav-item " style="padding-left: 2%;"><a class="nav-link" href="/takeaction">Take Action</a></li>
+<li class="nav-item " style="padding-left: 2%;"><a class="nav-link" href="/2023elections">2023 Elections</a></li>
+<li class="nav-item " style="padding-left: 2%;padding-right: 0%; "><a class="nav-link" href="joiningpolitics">Joining Politics</a></li>
+{% endblock %}
+{% block content %}
+<div class="">
+  <div class="row container" style="width: 93%;">
+  <div class="col-sm-5" style="margin-top: 10%;left: 11%;">
+      <h1 style="font-weight:bold; font-size:82px; margin-top: 0px;">Where We Stand</h1>
+      <h5 style="color:#12302E; font-weight:bold;margin-top: 12%;font-size:18px;  ">Party Platform</h5>
+      <p style="color:#8E8E8E; width:72%; font-size:16px">All committee of 12 members crafted our party’s platform, which would be reviewed on yearly basis. Our platform is created to uplift working people and write out the values that will guide our party for years to come.</p>
+      <h5 style="color:#12302E; font-weight:bold;margin-top: 12%;font-size:18px;  ">Party Platform</h5>
+      <p style="color:#8E8E8E; width:72%; font-size:16px">All committee of 12 members crafted our party’s platform, which would be reviewed on yearly basis. Our platform is created to uplift working people and write out the values that will guide our party for years to come.</p>
+
+    </div>
+  <div class="col-sm-1">
+
+  </div>
+  <div class="col-sm-4" style="">
+    <div class="triangle-up" style="margin-left: 28%;width:200%;overflow:hidden;box-shadow: 100px 0px 20px 50px #fff inset;background:url('static/fds_app/images/care-3031259_1920.png') no-repeat;background-size:cover;">
+      <img style="width:100%;visibility:hidden;overflow:hidden;" src="/static/fds_app/images/care-3031259_1920.png">
+    </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

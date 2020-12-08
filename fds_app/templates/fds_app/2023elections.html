@@ -1,0 +1,60 @@
+{% extends 'fds_app/base5.html' %}
+{% load static %}
+{% block style %}
+body{
+background-color: #fff;
+}
+p{
+  font-size:16px;
+}
+.nav-item{
+  padding-right:1%;
+}
+a#nav-link.active
+{
+      font-weight: 500;
+      color: #12302E;
+      background-color: #fff;
+      margin-bottom: 0;
+      margin-top: 10px;
+      border-radius: 0;
+  }
+
+
+{% endblock %}
+{% block links %}
+<li class="nav-item " style="padding-left: 2%;"><a id="nav-link" class="nav-link " href="/whoweare">Who we are</a></li>
+<li class="nav-item " style=" padding-left: 2%;"><a id="nav-link"class="nav-link " href="/wherewestand">Where we stand </a></li>
+<li class="nav-item " style="padding-left: 2%;"><a id="nav-link" class="nav-link " href="/takeaction">Take Action</a></li>
+<li class="nav-item " style="padding-left: 2%;"><a id="nav-link" class="nav-link active" href="/2023elections">2023 Elections</a></li>
+<li class="nav-item " style="padding-left: 2%;padding-right: 0%; "><a id="nav-link" class="nav-link" href="joiningpolitics">Joining Politics</a></li>
+
+{% endblock %}
+{% block title %}FDS | 2023 Elections{% endblock %}
+{% block content %}
+<div class="">
+  <div class="row container">
+    <div class="" style="display: flex;width:70%; margin-left: 25%;margin-top:-6%">
+      <div class="col-sm-4" style="height:auto;background-color:#12302e; float:left">
+        <h5 style="color:#fff; font-weight:bold;margin-top: 10%;font-size:18px;text-align: left;padding-left: 10%;  ">Register to vote</h5>
+        <p style="color:#fff; font-size:16px;text-align: left;padding-left: 10%;">FSD promotes right to vote for all eligible citizens.
+          All eligible citizens are advised to register</p>
+
+      </div>
+      <div class="col-sm-4" style="height:auto;background-color:#d89b45; float:left">
+        <h5 style="color:#fff; font-weight:bold;margin-top: 10%;font-size:18px;text-align: left;padding-left: 10%;">Donate</h5>
+        <p style="color:#fff; font-size:16px;text-align: left;padding-left: 10%;">Donate as little as N500.
+           Other options are N2000, N5000, N10000, N20,000 N50,000. Let's vote in the right leader. Let's begin this new era in Nigeria.</p>
+
+      </div>
+      <div class="col-sm-4" style="height:auto;background-color:#fff; float:left">
+        <h5 style="color:#12302E; font-weight:bold;margin-top: 10%;font-size:18px;text-align: left;padding-left: 10%;">Shop</h5>
+        <p style="color:#12302E;text-align: center; font-size:16px;text-align: left;padding-left: 10%;">Items for sale, branded hats and face mask </p>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
+{% endblock %}

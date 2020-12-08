@@ -1,0 +1,54 @@
+{% extends 'fds_app/base2.html' %}
+{% load static %}
+{% block title %}FSD | Take Action{% endblock %}
+{% block style %}
+.nav-item{
+  padding-right:1%
+}
+h1,h5, p{
+  color:#fff
+}
+.nav-link.active
+{
+      font-weight: 500;
+      color: #12302E;
+      background-color: #fff;
+      margin-bottom: 0;
+      margin-top: 10px;
+      border-radius: 0;
+  }
+{% endblock%}
+{% block links %}
+<li class="nav-item " style="padding-left: 2%;"><a  id="nav-link" class="nav-link " href="/whoweare">Who we are</a></li>
+<li class="nav-item " style=" padding-left: 2%;"><a  id="nav-link" class="nav-link " href="/wherewestand">Where we stand </a></li>
+<li class="nav-item " style="padding-left: 2%;"><a id="nav-link" class="nav-link active" href="/takeaction">Take Action</a></li>
+<li class="nav-item " style="padding-left: 2%;"><a id="nav-link" class="nav-link " href="/2023elections">2023 Elections</a></li>
+<li class="nav-item " style="padding-left: 2%;padding-right: 0%; "><a id="nav-link" class="nav-link" href="joiningpolitics">Joining Politics</a></li>
+
+{% endblock %}
+{% block content %}
+<div class="" >
+  <div class="row container" style="margin-top: 6%;">
+    <div class="col-sm-4" style="margin-top: 10%; margin-left: 11%;" "="">
+      <h1 style="font-weight:bold; font-size:82px; margin-top: 0px;">Take Action</h1>
+      <h5 style="font-weight:bold;margin-top: 12%;font-size:18px;  ">Events</h5>
+      <p style=" font-size:15px">Virtual meetings, Technical workshops and seminars</p>
+      <h5 style="font-weight:bold;margin-top: 18%;font-size:18px;  ">Trainings</h5>
+      <p style="  font-size:15px">The FSD delivers trainings to activists and volunteers, Party leaders and staff,
+         students and youth organizers, candidates and campaign staff, constituency caucus members and community leaders.</p>
+    </div>
+    <div class="col-sm-3" style="margin-top: 31.5%; margin-left: 5%;">
+      <h5 style="font-weight:bold;font-size:18px;  ">Volunteer</h5>
+      <p style=" font-size:15px">Virtual meetings, Technical workshops and seminars</p>
+      <h5 style="font-weight:bold;margin-top: 18%;font-size:18px;  ">Work With Us</h5>
+      <p style="font-size:15px">We are hiring. Available positions; social media expert,
+         membership engagement associate, webmaster, administrative staff</p>
+
+    </div>
+    <div class="col-sm-5" style="margin-top: -50%;margin-left: 42.1%;">
+      <img style="width:100%;height:auto;overflow:hidden;margin-left: 100%;" src="/static/fds_app/images/Vector4.png">
+    </div>
+
+  </div>
+</div>
+{% endblock %}

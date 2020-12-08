@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1 ">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <style >
+
+        {% block style %}{% endblock %}
+
+    </style>
+    <style >
+       .nav li a {
+       font-weight: 500;
+       color: #04a637;
+       margin-bottom: 0;
+       margin-top:10px;
+       border-radius: 0;
+   }
+
+   .nav li a:hover{
+   font-weight: 500;
+   color: #fff;
+   background-color:#04a637;
+   margin-bottom: 0;
+   margin-top:10px;
+   border-radius: 0;
+}
+
+   </style>
+   <script >
+       {% block script %}{% endblock %}
+     </script>
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg">
+    <div class="container" style="margin-top:20px;width:94%; ">
+      <div class="col-sm-3 navbar-header">
+      <button class ="navbar-toggle" type="button" data-toggle="collapse" data-target="#myNavbar">
+  			<span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+  			</button>
+        <a class="navbar-brand" href="/" >
+          <img class = "col-sm-1" style="height:106px;width:120px"  src="{% static 'fds_app/images/Logo2.png' %}" />
+    			</a>
+
+        </div>
+        <div class="col-sm-9 collapse navbar-collapse navbar-right" style = "margin-left:70%;width:80%;" id="myNavbar" >
+          <ul class="nav navbar-nav navbar-right" style=" margin-left:70%;width:70%;"  >
+            {% block links %}{% endblock %}
+
+          </ul>
+
+        </div>
+
+    </div>
+  </nav>
+
+      {% block content %}{% endblock %}
+      <div class="" >
+        <div class="container" style="çolor:#fff;margin-left:6%;margin-top:8%;width:90%; height:386px; background: url('static/fds_app/images/Rectangle12.png') no-repeat">
+          <img style="width:20%;height:auto;visibility:hidden;" src="/static/fds_app/images/Rectangle12.png">
+          <div class="" style="margin-bottom: 7%;">
+            <h1 style="font-weight: 600; margin-left: 38%; color: #fff; margin-top: 3%; font-size: 43.07px;">Join Our Action!</h1>
+            <h1 style="font-weight: 600; margin-left: 36%; color: #fff; margin-top: 0%; font-size: 43.07px;">Everyone can help</h1>
+            <button type="button" class="btn btn-lg" style="margin-top:0%; margin-left: 44%; font-size: 16px; font-weight: bold; line-height: 1.5; width:13%; border-radius:0;border-çolor:#fff; background:#fff;color:#04a637;">Join Us</button>
+          </div>  </div>
+      </div>
+
+  <div class="" style="margin-top:10%">
+    <nav class="navbar navbar-expand-lg" style="width:100%">
+
+      <footer class="container" style = "width:94%;position:relative;display: flex;align-items: center;color:04a637 ">
+        <div class="col-sm-3 navbar-header" style="margin-top:-5%;margin-left:-1%" >
+          <a class="navbar-brand" href="/" style="display:inline-block;"><img class = "col-sm-1" style="height:auto;width:100%" src="{% static 'fds_app/images/Logo2.png' %}" /></a>
+        </div>
+        <div class=" col-sm-7 collapse navbar-collapse" id="myNavbar" style="margin-top:4%;">
+          <ul class="nav navbar-nav navbar">
+            <li ><a href="/who we are" >Who we are</a></li>
+            <li><a href="#" >What we do </a></li>
+            <li><a href="#">News</a></li>
+            <li><a href="#" >Get involved</a></li>
+            <li><a href="#">Joining Politics</a></li>
+          </ul>
+
+        </div>
+        <div class="col-sm-2" style="margin-top:3%;" >
+           <button type="button" class = "btn" style="width: 70%;margin-top:15%; margin-left:150%;line-height: 2.3; border-radius:0;border-çolor:#04a637; background:#04a637;color:white;">Join us</button>
+        </div>
+    </footer>
+    </nav>
+  </div>
+
+  <div class="">
+    <div class="container"  style="margin-top:3%;width:93%;">
+      <div class="col-sm-8">
+        <h4 style="color:#8E8E8E;font-size: 14px;">
+          Federal Social Democrats is a non governmental & non-profit organization set up with the sole purpose of contributing positive change in the economic and social status of African youth through effective programs that delivers sustainable outcome.
+        </h4>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </body>
+</html>
