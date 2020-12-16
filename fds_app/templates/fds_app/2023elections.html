@@ -13,16 +13,38 @@ p{
 a#nav-link.active
 {
       font-weight: 500;
-      color: #12302E;
+      color: #008753;
       background-color: #fff;
       margin-bottom: 0;
       margin-top: 10px;
       border-radius: 0;
   }
+  .cardwrapper{
+    display: flex;
+    width:70%;
+    margin-left: 25%;
+    margin-top:-6%
+  }
 
-
+.card1, .card2, .card3{
+  height:auto; float:left;
+  width:100%;
+}
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  [class*="card"] {
+    display:block;
+    width:100%;
+    margin-left:0%;
+  }
+  [class*="row"]  {
+    width:100% !important;
+    margin-left: 0%;
+    margin-right: 0%
+}
 {% endblock %}
 {% block links %}
+<li class="nav-item " style=" padding-left: 1%;"><a id="nav-link" class="nav-link " href="/">Home</a></li>
 <li class="nav-item " style="padding-left: 2%;"><a id="nav-link" class="nav-link " href="/whoweare">Who we are</a></li>
 <li class="nav-item " style=" padding-left: 2%;"><a id="nav-link"class="nav-link " href="/wherewestand">Where we stand </a></li>
 <li class="nav-item " style="padding-left: 2%;"><a id="nav-link" class="nav-link " href="/takeaction">Take Action</a></li>
@@ -34,22 +56,22 @@ a#nav-link.active
 {% block content %}
 <div class="">
   <div class="row container">
-    <div class="" style="display: flex;width:70%; margin-left: 25%;margin-top:-6%">
-      <div class="col-sm-4" style="height:auto;background-color:#12302e; float:left">
+    <div class="cardwrapper" style="">
+      <div class="col-sm-4 card1" style="background-color:#008753;">
         <h5 style="color:#fff; font-weight:bold;margin-top: 10%;font-size:18px;text-align: left;padding-left: 10%;  ">Register to vote</h5>
         <p style="color:#fff; font-size:16px;text-align: left;padding-left: 10%;">FSD promotes right to vote for all eligible citizens.
           All eligible citizens are advised to register</p>
 
       </div>
-      <div class="col-sm-4" style="height:auto;background-color:#d89b45; float:left">
+      <div class="col-sm-4 card2" style="background-color:#d89b45;">
         <h5 style="color:#fff; font-weight:bold;margin-top: 10%;font-size:18px;text-align: left;padding-left: 10%;">Donate</h5>
         <p style="color:#fff; font-size:16px;text-align: left;padding-left: 10%;">Donate as little as N500.
            Other options are N2000, N5000, N10000, N20,000 N50,000. Let's vote in the right leader. Let's begin this new era in Nigeria.</p>
 
       </div>
-      <div class="col-sm-4" style="height:auto;background-color:#fff; float:left">
-        <h5 style="color:#12302E; font-weight:bold;margin-top: 10%;font-size:18px;text-align: left;padding-left: 10%;">Shop</h5>
-        <p style="color:#12302E;text-align: center; font-size:16px;text-align: left;padding-left: 10%;">Items for sale, branded hats and face mask </p>
+      <div class="col-sm-4 card3" style="background-color:#fff;">
+        <h5 style="color:#008753; font-weight:bold;margin-top: 10%;font-size:18px;text-align: left;padding-left: 10%;">Shop</h5>
+        <p style="color:#008753;text-align: center; font-size:16px;text-align: left;padding-left: 10%;">Items for sale, branded hats and face mask </p>
 
       </div>
     </div>

@@ -9,13 +9,20 @@
 {
       font-weight: 500;
       color: #fff;
-      background-color: #12302E;
+      background-color: #008753;
       margin-bottom: 0;
       margin-top: 10px;
       border-radius: 0;
   }
+  @media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="lowerp"] {
+      padding-top: 10% !important;
+}
+    }
 {% endblock%}
 {% block links %}
+<li class="nav-item " style=" padding-left: 1%;"><a class="nav-link " href="/">Home</a></li>
 <li class="nav-item " style="padding-left: 2%;"><a class="nav-link active" href="/whoweare">Who we are</a></li>
 <li class="nav-item " style=" padding-left: 2%;"><a class="nav-link " href="/wherewestand">Where we stand </a></li>
 <li class="nav-item " style="padding-left: 2%;"><a class="nav-link" href="/takeaction">Take Action</a></li>
@@ -24,55 +31,55 @@
 {% endblock %}
 {% block content %}
 <div class="container" style="margin-top: 2%;">
-    <h1 style="font-weight:bold; font-size:5.5vw;text-align:center; margin-top: 0px;">Who we are</h1>
+    <h1 style="font-weight:bold;  color:#008753; font-size:5.5vw;text-align:center; margin-top: 0px;">Who we are</h1>
   </div>
 <div class="" style="position:relative">
-  <div class="row container" style="margin-left:6%;margin-top:3%;width:90%; height:auto;    background-blend-mode: overlay; opacity:0.9;background:#12302E url('static/fds_app/images/image6.png') no-repeat; background-size:cover">
+  <div class="row container gs_reveal gs_reveal_fromRight" style="margin-left:6%;margin-top:3%;width:90%; height:auto;    background-blend-mode: overlay; opacity:0.9;background:#008753 url('static/fds_app/images/image6.png') no-repeat; background-size:cover">
   <img style="width:100%;visibility:hidden;" src="/static/fds_app/images/image6.png">
    <div class="col-sm-3" style="margin-left: 3%;margin-top: -10%;">
-     <h5 style="color:#fff; font-weight:bold;margin-top: 0%;font-size:24px;  ">What we do</h5>
+     <h5  class="gs_reveal " style="color:#fff; font-weight:bold;margin-top: 0%;font-size:24px;  ">What we do</h5>
    </div>
-   <div class="col-sm-9" style=" margin-left: 27%;margin-top: -10%;">
-     <p style="color:#fff;font-weight: 400;margin-top: 0%;font-size:16px;padding-right: 3%;">FSD movement is founded by a collection of people, driven by values and committed to the ideology of delivering the greatest good to the greatest number of the citizens of Nigeria. The Movement seeks to, entrench openness, accountability and restore people’s trust in Government.</p>
+   <div class="col-sm-9 lowerp" style=" margin-left: 27%;margin-top: -10%;">
+     <p data-splitting class="gs_reveal" style="color:#fff;font-weight: 400;margin-top: 0%;font-size:16px;padding-right: 3%;">FSD movement is founded by a collection of people, driven by values and committed to the ideology of delivering the greatest good to the greatest number of the citizens of Nigeria. The Movement seeks to, entrench openness, accountability and restore people’s trust in Government.</p>
    </div>
   </div>
   </div>
   <div class="" style="position:relative">
-      <div class="row container" style="margin-left:6%;margin-top:0%;width:90%;height:auto;background-blend-mode: exclusion;opacity: 12;background:#717171 url('static/fds_app/images/image4.png') no-repeat;background-size:cover;">
+      <div class="row container gs_reveal gs_reveal_fromLeft" style="margin-left:6%;margin-top:0%;width:90%;height:auto;background-blend-mode: exclusion;opacity: 12;background:#717171 url('static/fds_app/images/image4.png') no-repeat;background-size:cover;">
       <img style="width:100%;visibility:hidden;" src="/static/fds_app/images/image4.png">
       <div class="col-sm-3" style="margin-left: 3%;margin-top: -10%;">
-        <h5 style="color:#fff; font-weight:bold;margin-top: 0%;font-size:24px;  ">About FSD</h5>
+        <h5 data-splitting class="gs_reveal" style="color:#fff; font-weight:bold;margin-top: 0%;font-size:24px;  ">About FSD</h5>
       </div>
-      <div class="col-sm-9" style=" margin-left: 27%;margin-top: -10%;">
-        <p style="color:#fff;font-weight: 400;margin-top: 0%;padding-right: 3%;font-size:16px;">Federal Social Democrat was founded in 2020 by a conglomerate of people who believe in the need to keep Nigeria as one whilst building a better Nigeria free of corruption, bad governance and poverty.</p>
+      <div class="col-sm-9 lowerp" style=" margin-left: 27%;margin-top: -10%;">
+        <p data-splitting class="gs_reveal" style="color:#fff;font-weight: 400;margin-top: 0%;padding-right: 3%;font-size:16px;">Federal Social Democrat was founded in 2020 by a conglomerate of people who believe in the need to keep Nigeria as one whilst building a better Nigeria free of corruption, bad governance and poverty.</p>
       </div>
       </div>
     </div>
     <div class="" style="position:relative">
-        <div class="row container" style="margin-left:6%;margin-top:0%;width:90%;height:auto;background-blend-mode: soft-light;opacity: 0.8;background: #8c4d0b url(static/fds_app/images/image5.png) no-repeat;background-size:cover;">
+        <div class="row container gs_reveal gs_reveal_fromRight" style="margin-left:6%;margin-top:0%;width:90%;height:auto;background-blend-mode: soft-light;opacity: 0.8;background: #8c4d0b url(static/fds_app/images/image5.png) no-repeat;background-size:cover;">
         <img style="width:100%;visibility:hidden;" src="/static/fds_app/images/image5.png">
         <div class="col-sm-3" style="margin-left: 3%;margin-top: -10%;">
-          <h5 style="color:#fff; font-weight:bold;margin-top: 0%;font-size:24px;">Vision</h5>
+          <h5 data-splitting class="gs_reveal" style="color:#fff; font-weight:bold;margin-top: 0%;font-size:24px;">Vision</h5>
         </div>
-        <div class="col-sm-9" style=" margin-left: 27%;margin-top: -10%;">
-          <p style="color:#fff;font-weight: 400;margin-top: 0%;padding-right: 3%;font-size:16px;">To build an egalitarian Federal Union and transform Nigeria into a global economic and technological power, the pride of Africa. Core vision: Selfless Service, Zero-Tolerance for All Forms of Corruption, Justice & Equity, Knowledge-Based Society, Transparency and Accountability and Integrity</p>
+        <div class="col-sm-9 lowerp" style=" margin-left: 27%;margin-top: -10%;">
+          <p data-splitting class="gs_reveal" style="color:#fff;font-weight: 400;margin-top: 0%;padding-right: 3%;font-size:16px;">To build an egalitarian Federal Union and transform Nigeria into a global economic and technological power, the pride of Africa. Core vision: Selfless Service, Zero-Tolerance for All Forms of Corruption, Justice & Equity, Knowledge-Based Society, Transparency and Accountability and Integrity</p>
         </div>
         </div>
       </div>
       <div class="" style="position:relative">
-          <div class="row container" style="margin-left:6%;margin-top:0%;width:90%; height:auto; opacity:0.9;background-blend-mode: overlay;background: #fafafa url('static/fds_app/images/image7.png') no-repeat; background-size:cover">
+          <div class="row container gs_reveal gs_reveal_fromLeft" style="margin-left:6%;margin-top:0%;width:90%; height:auto; opacity:0.9;background-blend-mode: overlay;background: #fafafa url('static/fds_app/images/image7.png') no-repeat; background-size:cover">
           <img style="width:100%;visibility:hidden;" src="/static/fds_app/images/image7.png">
           <div class="col-sm-3" style="margin-left: 3%;margin-top: -10%;">
-            <h5 style="color:#12302E; font-weight:bold;margin-top: 0%;font-size:24px;  ">Mission</h5>
+            <h5 data-splitting class="gs_reveal" style="color:#008753; font-weight:bold;margin-top: 0%;font-size:24px;  ">Mission</h5>
           </div>
-          <div class="col-sm-9" style=" margin-left: 27%;margin-top: -10%;">
-            <p style="color:#12302E;font-weight: 400;margin-top: 0%;padding-right: 3%;font-size:16px;">To galvanise the people to build a value-driven society inspired and sustained by selfless leaders, restoring trust in public service, bringing governance closer to the people, delivering the greatest good to the greatest number of people.</p>
+          <div class="col-sm-9 lowerp" style=" margin-left: 27%;margin-top: -10%;">
+            <p data-splitting class="gs_reveal" style="color:#008753;font-weight: 400;margin-top: 0%;padding-right: 3%;font-size:16px;">To galvanise the people to build a value-driven society inspired and sustained by selfless leaders, restoring trust in public service, bringing governance closer to the people, delivering the greatest good to the greatest number of people.</p>
           </div>
           </div>
         </div>
         <div class="" style="position:relative">
             <div class="row container" style="margin-right: 0%;margin-left:6%;margin-top:0%;width:100%;padding-right: 0%;padding-left: 0%;height:auto;margin-bottom:0%;">
-              <div class="col-sm-4" style="padding-left: 0%;margin-left:0%;margin-top:0%;background-blend-mode: overlay;opacity:0.8;background: #12302E url('static/fds_app/images/image8.png') no-repeat;background-size:cover;">
+              <div class="col-sm-4" style="padding-left: 0%;margin-left:0%;margin-top:0%;background-blend-mode: overlay;opacity:0.8;background: #008753 url('static/fds_app/images/image8.png') no-repeat;background-size:cover;">
                 <div class="col-sm-9" style="margin-left: 15%;margin-top: 2.3%;padding-bottom: 0%;">
                   <img style="width:100%;visibility:hidden;" src="/static/fds_app/images/image8.png">
                   <div class="" style="margin-top: -30%;">
@@ -81,7 +88,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-sm-4" style="margin-left:0%;margin-top:0%;background-blend-mode: overlay; opacity:0.8;background: #12302E url('static/fds_app/images/image8.png') no-repeat; background-size:cover">
+              <div class="col-sm-4" style="margin-left:0%;margin-top:0%;background-blend-mode: overlay; opacity:0.8;background: #008753 url('static/fds_app/images/image8.png') no-repeat; background-size:cover">
               <div class="col-sm-9" style="margin-left: 15%;margin-top: 2.3%;padding-bottom: 0%;">
                 <img style="width:100%;visibility:hidden;" src="/static/fds_app/images/image8.png">
                 <div class="" style="margin-top: -30%;">
@@ -90,7 +97,7 @@
                 </div>
               </div>
               </div>
-              <div class="col-sm-4" style="margin-left:0%;margin-top:0%;background-blend-mode: overlay; opacity:0.8;background: #12302E url('static/fds_app/images/image8.png') no-repeat; background-size:cover">
+              <div class="col-sm-4" style="margin-left:0%;margin-top:0%;background-blend-mode: overlay; opacity:0.8;background: #008753 url('static/fds_app/images/image8.png') no-repeat; background-size:cover">
               <div class="col-sm-8" style="margin-left: 15%;margin-top: 2.3%;padding-bottom: 0%;">
                 <img style="width:100%;visibility:hidden;" src="/static/fds_app/images/image8.png">
                 <div class="" style="margin-top: -30%;">

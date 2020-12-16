@@ -11,14 +11,20 @@ h1,h5, p{
 .nav-link.active
 {
       font-weight: 500;
-      color: #12302E;
+      color: #008753;
       background-color: #fff;
       margin-bottom: 0;
-      margin-top: 10px;
       border-radius: 0;
   }
+  @media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="Image1"] {
+      margin-left: 45% !important;
+
+    }
 {% endblock%}
 {% block links %}
+<li class="nav-item " style="padding-left: 1%;"><a id="nav-link" class="nav-link" href="/">Home</a></li>
 <li class="nav-item " style="padding-left: 2%;"><a  id="nav-link" class="nav-link " href="/whoweare">Who we are</a></li>
 <li class="nav-item " style=" padding-left: 2%;"><a  id="nav-link" class="nav-link " href="/wherewestand">Where we stand </a></li>
 <li class="nav-item " style="padding-left: 2%;"><a id="nav-link" class="nav-link active" href="/takeaction">Take Action</a></li>
@@ -45,8 +51,8 @@ h1,h5, p{
          membership engagement associate, webmaster, administrative staff</p>
 
     </div>
-    <div class="col-sm-5" style="margin-top: -50%;margin-left: 42.1%;">
-      <img style="width:100%;height:auto;overflow:hidden;margin-left: 100%;" src="/static/fds_app/images/Vector4.png">
+    <div class="col-sm-5" style="margin-top: -55%;margin-left: 42.1%;">
+      <img class="Image1" style="width:100%;height:auto;overflow:hidden;margin-left: 100%;" src="/static/fds_app/images/Vector4.png">
     </div>
 
   </div>

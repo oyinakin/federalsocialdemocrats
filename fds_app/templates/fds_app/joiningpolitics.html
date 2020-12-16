@@ -15,14 +15,28 @@ h1,h5,h4, p{
 .nav-link.active
 {
       font-weight: 500;
-      color: #12302e;
+      color: #008753;
       background-color: #fff;
       margin-bottom: 0;
       margin-top: 10px;
       border-radius: 0;
   }
+  .titlestep{
+    width: 50%;
+    margin-left: 3%;
+    font-weight:bold;
+    font-size:16px;
+    margin-right: 0%;
+    text-align:left;
+    margin-top: 0%;
+    display: inline;
+  }
+  .pstep{
+    display: inline;
+  }
 {% endblock%}
 {% block links %}
+<li class="nav-item " style=" padding-left: 1%;"><a id="nav-link" class="nav-link " href="/">Home</a></li>
 <li class="nav-item " style="padding-left: 2%;"><a class="nav-link " href="/whoweare">Who we are</a></li>
 <li class="nav-item " style=" padding-left: 2%;"><a class="nav-link " href="/wherewestand">Where we stand </a></li>
 <li class="nav-item " style="padding-left: 2%;"><a class="nav-link" href="/takeaction">Take Action</a></li>
@@ -30,23 +44,31 @@ h1,h5,h4, p{
 <li class="nav-item " style="padding-left: 2%;padding-right: 0%; "><a class="nav-link active" href="joiningpolitics">Joining Politics</a></li>
 {% endblock %}
 {% block content %}
-<d<div class="">
-  <div class="row container" style="margin-top: -18%;margin-left: 15%;">
-    <div class="col-sm-5" style="margin-top: 27%;/* display: inline; */">
+<div class="">
+  <div class="row container" style="margin-top: -18%;margin-left: 15%;" >
+    <div class="col-sm-5" style="margin-top: 27%;/* display: inline; */" >
      <h1 style="margin-left: -20%;font-weight:bold;font-size:5.5vw;text-align:left;margin-top: 0%;margin-bottom: 15%;">How to join Politics</h1>
      <img src="/static/fds_app/images/Group16.png" alt="" style="width: auto; margin-left: -20%;">
-     <h4 style="width: 50%;margin-left: 3%;font-weight:bold;font-size:1.1vw;margin-right: 0%;text-align:left;margin-top: 0%;display: inline;">Identify Your Ward</h4>
-     <img src="/static/fds_app/images/Vector5b.png" alt="" id="istep1" style="width: auto; margin-left: 69%;cursor: pointer;" onclick="showhideDetails('step1','istep1')">
-     <p id="step1" style="display:none;">
+     <span>
+       <h4  class="titlestep" style="">Identify Your Ward</h4>
+       </span>
+       <span class ="pstep">
+         <img src="/static/fds_app/images/Vector5b.png" alt="" id="istep1" style="width: auto; cursor: pointer;" onclick="showhideDetails('step1','istep1')">
+        </span>
+        <p id="step1" style="display:none;">
        The ward is the smallest unit of Government in Politics. The Political Head of a Ward is called Councilor. Every politician must compulsorily be a card-carrying member of a political party at the ward level. This however is with the exception of those who choose to contest election as or support independent candidates. Your ward is not necessarily your home town but the locality where you will most conveniently carry out your political activities. It is also advisable that you also register with INEC as a voter in this ward.
      </p>
-     <div style="border-top: solid #fff 0.1vw;margin-left: -25%;margin-top: 10%;"></div>
+     <div style="border-top: solid #fff 0.1vw;margin-left: -25%;margin-top: 10%;" ></div>
      <div style="margin-top: 10%">
-         <img src="/static/fds_app/images/Group17.png" alt="" style="width: auto; margin-left: -20%;">
-         <!-- h5 style="margin-left: -20%;padding: 0.5% 0.5% 0.5% 0.5%;text-align: center;width: 8%;border: solid #fff 0.3vw;border-radius: 50%;/* display: flex; */"-->
-         <h4 style="width: 50%;margin-left: 3%;font-weight:bold;font-size:1.1vw;margin-right: 0%;text-align:left;margin-top: 0%;display: inline;">
+       <img src="/static/fds_app/images/Group17.png" alt="" style="width: auto; margin-left: -20%;">
+       <span>
+         <h4 style="width: 50%;margin-left: 3%;font-weight:bold;font-size:16px;margin-right: 0%;text-align:left;margin-top: 0%;display: inline;">
            Make the Choice of Political Party</h4>
-        <img src="/static/fds_app/images/Vector5b.png" alt="" id="istep2" style="width: auto; margin-left: 45%;cursor: pointer;" onclick="showhideDetails('step2','istep2')">
+       </span>
+       <span class ="pstep">
+         <img src="/static/fds_app/images/Vector5b.png" alt="" id="istep2" style="cursor: pointer;" onclick="showhideDetails('step2','istep2')">
+       </span>
+       <!-- h5 style="margin-left: -20%;padding: 0.5% 0.5% 0.5% 0.5%;text-align: center;width: 8%;border: solid #fff 0.3vw;border-radius: 50%;/* display: flex; */"-->
          <p id="step2" style="display:none;">
            The ward is the smallest unit of Government in Politics. The Political Head of a Ward is called Councilor. Every politician must compulsorily be a card-carrying member of a political party at the ward level. This however is with the exception of those who choose to contest election as or support independent candidates. Your ward is not necessarily your home town but the locality where you will most conveniently carry out your political activities. It is also advisable that you also register with INEC as a voter in this ward.
          </p>
@@ -54,10 +76,11 @@ h1,h5,h4, p{
       <div style="border-top: solid #fff 0.1vw;margin-left: -25%;margin-top: 10%;"></div>
       <div style="margin-top: 10%">
           <img src="/static/fds_app/images/Group18.png" alt="" style="width: auto; margin-left: -20%;">
-          <!-- h5 style="margin-left: -20%;padding: 0.5% 0.5% 0.5% 0.5%;text-align: center;width: 8%;border: solid #fff 0.3vw;border-radius: 50%;/* display: flex; */"-->
-          <h4 style="width: 50%;margin-left: 3%;font-weight:bold;font-size:1.1vw;margin-right: 0%;text-align:left;margin-top: 0%;display: inline;">
-            Get involved in Ward activities</h4>
-         <img src="/static/fds_app/images/Vector5b.png" alt="" id="istep3" style="width: auto; margin-left: 50%;cursor: pointer;" onclick="showhideDetails('step3','istep3')">
+        <span><h4 style="width: 50%;margin-left: 3%;font-weight:bold;font-size:16px;margin-right: 0%;text-align:left;margin-top: 0%;display: inline;">
+            Get involved in Ward activities</h4></span>
+          <span class ="pstep">
+         <img src="/static/fds_app/images/Vector5b.png" alt="" id="istep3" style="cursor: pointer;" onclick="showhideDetails('step3','istep3')">
+        </span>
           <p id="step3" style="display:none;">
             The ward is the smallest unit of Government in Politics. The Political Head of a Ward is called Councilor. Every politician must compulsorily be a card-carrying member of a political party at the ward level. This however is with the exception of those who choose to contest election as or support independent candidates. Your ward is not necessarily your home town but the locality where you will most conveniently carry out your political activities. It is also advisable that you also register with INEC as a voter in this ward.
           </p>
@@ -65,10 +88,11 @@ h1,h5,h4, p{
        <div style="border-top: solid #fff 0.1vw;margin-left: -25%;margin-top: 10%;"></div>
        <div style="margin-top: 10%">
            <img src="/static/fds_app/images/Group19.png" alt="" style="width: auto; margin-left: -20%;">
-           <!-- h5 style="margin-left: -20%;padding: 0.5% 0.5% 0.5% 0.5%;text-align: center;width: 8%;border: solid #fff 0.3vw;border-radius: 50%;/* display: flex; */"-->
-           <h4 style="width: 50%;margin-left: 3%;font-weight:bold;font-size:1.1vw;margin-right: 0%;text-align:left;margin-top: 0%;display: inline;">
+           <span><h4 style="width: 50%;margin-left: 3%;font-weight:bold;font-size:16px;margin-right: 0%;text-align:left;margin-top: 0%;display: inline;">
              Identify like-minded believers in the party to relate with</h4>
-          <img src="/static/fds_app/images/Vector5b.png" alt="" id="istep4" style="width: auto; margin-left: 8%;cursor: pointer;" onclick="showhideDetails('step4','istep4')">
+           </span>
+           <span class ="pstep"><img src="/static/fds_app/images/Vector5b.png" alt="" id="istep4" style="cursor: pointer;" onclick="showhideDetails('step4','istep4')">
+           </span>
            <p id="step4" style="display:none;">
              The ward is the smallest unit of Government in Politics. The Political Head of a Ward is called Councilor. Every politician must compulsorily be a card-carrying member of a political party at the ward level. This however is with the exception of those who choose to contest election as or support independent candidates. Your ward is not necessarily your home town but the locality where you will most conveniently carry out your political activities. It is also advisable that you also register with INEC as a voter in this ward.
            </p>
@@ -76,21 +100,26 @@ h1,h5,h4, p{
         <div style="border-top: solid #fff 0.1vw;margin-left: -25%;margin-top: 10%;"></div>
         <div style="margin-top: 10%">
             <img src="/static/fds_app/images/Group20.png" alt="" style="width: auto; margin-left: -20%;">
-            <!-- h5 style="margin-left: -20%;padding: 0.5% 0.5% 0.5% 0.5%;text-align: center;width: 8%;border: solid #fff 0.3vw;border-radius: 50%;/* display: flex; */"-->
-            <h4 style="width: 50%;margin-left: 3%;font-weight:bold;font-size:1.1vw;margin-right: 0%;text-align:left;margin-top: 0%;display: inline;">
-              Relate Well With The leaders</h4>
-           <img src="/static/fds_app/images/Vector5b.png" alt="" id="istep4" style="width: auto; margin-left: 53%;cursor: pointer;" onclick="showhideDetails('step4','istep4')">
-            <p id="step4" style="display:none;">
+            <span>
+              <h4 style="width: 50%;margin-left: 3%;font-weight:bold;font-size:16px;margin-right: 0%;text-align:left;margin-top: 0%;display: inline;">
+                Relate Well With The leaders</h4>
+            </span>
+            <span class ="pstep">
+              <img src="/static/fds_app/images/Vector5b.png" alt="" id="istep5" style="cursor: pointer;" onclick="showhideDetails('step4','istep4')">
+
+            </span>
+             <p id="step4" style="display:none;">
               The ward is the smallest unit of Government in Politics. The Political Head of a Ward is called Councilor. Every politician must compulsorily be a card-carrying member of a political party at the ward level. This however is with the exception of those who choose to contest election as or support independent candidates. Your ward is not necessarily your home town but the locality where you will most conveniently carry out your political activities. It is also advisable that you also register with INEC as a voter in this ward.
             </p>
          </div>
          <div style="border-top: solid #fff 0.1vw;margin-left: -25%;margin-top: 10%;"></div>
          <div style="margin-top: 10%">
              <img src="/static/fds_app/images/Group21.png" alt="" style="width: auto; margin-left: -20%;">
-             <!-- h5 style="margin-left: -20%;padding: 0.5% 0.5% 0.5% 0.5%;text-align: center;width: 8%;border: solid #fff 0.3vw;border-radius: 50%;/* display: flex; */"-->
-             <h4 style="width: 50%;margin-left: 3%;font-weight:bold;font-size:1.1vw;margin-right: 0%;text-align:left;margin-top: 0%;display: inline;">
+             <span><h4 style="width: 50%;margin-left: 3%;font-weight:bold;font-size:16px;margin-right: 0%;text-align:left;margin-top: 0%;display: inline;">
                Volunteer to be part of Campaigns/Party Activities</h4>
-            <img src="/static/fds_app/images/Vector5b.png" alt="" id="istep6" style="width: auto; margin-left: 17%;cursor: pointer;" onclick="showhideDetails('step6','istep6')">
+             </span>
+             <span class ="pstep"><img src="/static/fds_app/images/Vector5b.png" alt="" id="istep6" style="cursor: pointer;" onclick="showhideDetails('step6','istep6')">
+             </span>
              <p id="step6" style="display:none;">
                The ward is the smallest unit of Government in Politics. The Political Head of a Ward is called Councilor. Every politician must compulsorily be a card-carrying member of a political party at the ward level. This however is with the exception of those who choose to contest election as or support independent candidates. Your ward is not necessarily your home town but the locality where you will most conveniently carry out your political activities. It is also advisable that you also register with INEC as a voter in this ward.
              </p>
@@ -98,10 +127,11 @@ h1,h5,h4, p{
           <div style="border-top: solid #fff 0.1vw;margin-left: -25%;margin-top: 10%;"></div>
           <div style="margin-top: 10%">
               <img src="/static/fds_app/images/Group22.png" alt="" style="width: auto; margin-left: -20%;">
-              <!-- h5 style="margin-left: -20%;padding: 0.5% 0.5% 0.5% 0.5%;text-align: center;width: 8%;border: solid #fff 0.3vw;border-radius: 50%;/* display: flex; */"-->
-              <h4 style="width: 50%;margin-left: 3%;font-weight:bold;font-size:1.1vw;margin-right: 0%;text-align:left;margin-top: 0%;display: inline;">
+              <span>
+              </span>
+              <span class ="pstep"></span><h4 style="width: 50%;margin-left: 3%;font-weight:bold;font-size:16px;margin-right: 0%;text-align:left;margin-top: 0%;display: inline;">
                 Pay attention to Political Information</h4>
-             <img src="/static/fds_app/images/Vector5b.png" alt="" id="istep7" style="width: auto; margin-left: 39%;cursor: pointer;" onclick="showhideDetails('step7','istep7')">
+             <img src="/static/fds_app/images/Vector5b.png" alt="" id="istep7" style="cursor: pointer;" onclick="showhideDetails('step7','istep7')">
               <p id="step7" style="display:none;">
                 The ward is the smallest unit of Government in Politics. The Political Head of a Ward is called Councilor. Every politician must compulsorily be a card-carrying member of a political party at the ward level. This however is with the exception of those who choose to contest election as or support independent candidates. Your ward is not necessarily your home town but the locality where you will most conveniently carry out your political activities. It is also advisable that you also register with INEC as a voter in this ward.
               </p>
@@ -109,10 +139,13 @@ h1,h5,h4, p{
            <div style="border-top: solid #fff 0.1vw;margin-left: -25%;margin-top: 10%;"></div>
            <div style="margin-top: 10%">
                <img src="/static/fds_app/images/Group23.png" alt="" style="width: auto; margin-left: -20%;">
-               <!-- h5 style="margin-left: -20%;padding: 0.5% 0.5% 0.5% 0.5%;text-align: center;width: 8%;border: solid #fff 0.3vw;border-radius: 50%;/* display: flex; */"-->
-               <h4 style="width: 50%;margin-left: 3%;font-weight:bold;font-size:1.1vw;margin-right: 0%;text-align:left;margin-top: 0%;display: inline;">
-                 Get involved in your Community</h4>
-              <img src="/static/fds_app/images/Vector5b.png" alt="" id="istep8" style="width: auto; margin-left: 47%;cursor: pointer;" onclick="showhideDetails('step8','istep8')">
+               <span>
+                 <h4 style="width: 50%;margin-left: 3%;font-weight:bold;font-size:16px;margin-right: 0%;text-align:left;margin-top: 0%;display: inline;">
+                   Get involved in your Community</h4>
+               </span>
+               <span class ="pstep">
+                 <img src="/static/fds_app/images/Vector5b.png" alt="" id="istep8" style="cursor: pointer;" onclick="showhideDetails('step8','istep8')">
+               </span>
                <p id="step8" style="display:none;">
                  The ward is the smallest unit of Government in Politics. The Political Head of a Ward is called Councilor.
                  Every politician must compulsorily be a card-carrying member of a political party at the ward level.
@@ -124,21 +157,25 @@ h1,h5,h4, p{
             <div style="border-top: solid #fff 0.1vw;margin-left: -25%;margin-top: 10%;"></div>
             <div style="margin-top: 10%">
                 <img src="/static/fds_app/images/Group24.png" alt="" style="width: auto; margin-left: -20%;">
-                <!-- h5 style="margin-left: -20%;padding: 0.5% 0.5% 0.5% 0.5%;text-align: center;width: 8%;border: solid #fff 0.3vw;border-radius: 50%;/* display: flex; */"-->
-                <h4 style="width: 50%;margin-left: 3%;font-weight:bold;font-size:1.1vw;margin-right: 0%;text-align:left;margin-top: 0%;display: inline;">
-                Build character and good name</h4>
-               <img src="/static/fds_app/images/Vector5b.png" alt="" id="istep9" style="width: auto; margin-left: 49%;cursor: pointer;" onclick="showhideDetails('step9','istep9')">
-                <p id="step9" style="display:none;">
+                <span>
+                  <h4 style="width: 50%;margin-left: 3%;font-weight:bold;font-size:16px;margin-right: 0%;text-align:left;margin-top: 0%;display: inline;">
+                  Build character and good name</h4>
+                </span>
+                <span><img src="/static/fds_app/images/Vector5b.png" alt="" id="istep9" style="cursor: pointer;" onclick="showhideDetails('step9','istep9')">
+               </span>
+                 <p id="step9" style="display:none;">
                   The ward is the smallest unit of Government in Politics. The Political Head of a Ward is called Councilor. Every politician must compulsorily be a card-carrying member of a political party at the ward level. This however is with the exception of those who choose to contest election as or support independent candidates. Your ward is not necessarily your home town but the locality where you will most conveniently carry out your political activities. It is also advisable that you also register with INEC as a voter in this ward.
                 </p>
              </div>
              <div style="border-top: solid #fff 0.1vw;margin-left: -25%;margin-top: 10%;"></div>
              <div style="margin-top: 10%">
                  <img src="/static/fds_app/images/Group25.png" alt="" style="width: auto; margin-left: -20%;">
-                 <!-- h5 style="margin-left: -20%;padding: 0.5% 0.5% 0.5% 0.5%;text-align: center;width: 8%;border: solid #fff 0.3vw;border-radius: 50%;/* display: flex; */"-->
-                 <h4 style="width: 50%;margin-left: 3%;font-weight:bold;font-size:1.1vw;margin-right: 0%;text-align:left;margin-top: 0%;display: inline;">
+                 <span><h4 style="width: 50%;margin-left: 3%;font-weight:bold;font-size:16px;margin-right: 0%;text-align:left;margin-top: 0%;display: inline;">
                    If you must contest, start small</h4>
-                <img src="/static/fds_app/images/Vector5b.png" alt="" id="istep10" style="width: auto; margin-left: 49%;cursor: pointer;" onclick="showhideDetails('step10','istep10')">
+                 </span>
+                 <span class ="pstep">
+                   <img src="/static/fds_app/images/Vector5b.png" alt="" id="istep10" style="cursor: pointer;" onclick="showhideDetails('step10','istep10')">
+                 </span>
                  <p id="step10" style="display:none;">
                    The ward is the smallest unit of Government in Politics. The Political Head of a Ward is called Councilor. Every politician must compulsorily be a card-carrying member of a political party at the ward level. This however is with the exception of those who choose to contest election as or support independent candidates. Your ward is not necessarily your home town but the locality where you will most conveniently carry out your political activities. It is also advisable that you also register with INEC as a voter in this ward.
                  </p>

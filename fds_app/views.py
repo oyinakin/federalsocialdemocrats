@@ -36,3 +36,8 @@ def elections2023(request):
     template = loader.get_template('fds_app/2023elections.html')
     context = {}
     return HttpResponse(template.render(context, request))
+
+def signup(request):
+    template = loader.get_template('fds_app/signup.html')
+    context = {}
+    return HttpResponse(template.render(context, request))

@@ -9,46 +9,35 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <!-- Optional theme -->
+    <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting.css" />
+    <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting-cells.css" />
+    <link rel="stylesheet" href="/static/fds_app/css/style.css">
     <style >
-
         {% block style %}{% endblock %}
-
     </style>
-    <style >
-       .nav li a {
-       font-weight: 500;
-       color: #12302e;
-       margin-bottom: 0;
-       margin-top:10px;
-       border-radius: 0;
-   }
-
-   .nav li a:hover{
-   font-weight: 500;
-   color: #fff;
-   background-color:#12302e;
-   margin-bottom: 0;
-   margin-top:10px;
-   border-radius: 0;
-}
-
-   </style>
    <script >
        {% block script %}{% endblock %}
      </script>
+
+     <script src="https://unpkg.com/scroll-out/dist/scroll-out.min.js"></script>
+<script src="https://unpkg.com/splitting/dist/splitting.js"></script>
+<script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg">
-          <a class="navbar-brand" href="/">
-            <img class="" style="height:auto;width:100%;margin-left: 60%;margin-top: auto;" src="/static/fds_app/images/logo2.png">
-            </a>
-          <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#myNavbar" aria-expanded="false" style="
-        margin-right: 3%; background-color: #12302e;">
-      			<span class="navbar-toggler-icon ">-</span>
+  <nav class="layer1 container-fluid navbar navbar-expand-md ">
+    <a class="navbar-brand" href="/">
+              <img src="/static/fds_app/images/logo2.png">
+    </a>
+    <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#collapsibleNavbar" aria-expanded="false" >
+      			<span class="navbar-toggler-icon ">
+<svg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'>
+  <path stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/></svg>
+        </span>
+
           </button>
-            <div class="navbar-collapse navbar-right col-sm-10 collapse show" style="margin-left: auto; margin-top: -3%;" id="myNavbar">
-              <ul class="nav navbar-nav navbar-right" style=" margin-left:32%;width:70%;">
+          <div class="collapse navbar-collapse " id="collapsibleNavbar" style="margin-top: 0vw">
+              <ul class="nav navbar-nav navbar-right">
                 {% block links %}{% endblock %}
                 </ul>
           </div>
@@ -56,16 +45,16 @@
 
       {% block content %}{% endblock %}
       <div class="">
-        <div class="ontainer" style="çolor:#fff;margin-left:6%;margin-top:8%;width:89%; height:auto; background: url('static/fds_app/images/Rectangle12.png') no-repeat">
+        <div class="ontainer" style="">
           <img style="width:20%;height:auto;visibility:hidden;" src="/static/fds_app/images/Rectangle12.png">
           <div class="" style="margin-bottom: 7%;">
-            <h1 style="font-weight: 600; margin-left: 38%; color: #fff; margin-top: 3%; font-size: 43.07px;">Join Our Action!</h1>
-            <h1 style="font-weight: 600; margin-left: 36%; color: #fff; margin-top: 0%; font-size: 43.07px;">Everyone can help</h1>
-            <button type="button" class="btn btn-lg" style="FONT-VARIANT: JIS78;margin-top:0%;margin-left: 44%;font-size: 16px;font-weight: bold;line-height: 1.5;width:13%;border-radius:0;margin-bottom: 7%;border-çolor:#fff;background:#fff;color:#12302e;">Join Us</button>
+            <h1 class="layer7firsth1">Join Our Action!</h1>
+            <h1 class="layer72ndh1">Everyone can help</h1>
+            <button type="button" class="btn btn-lg layer7btn" ><a href="/signup">Join Us</a></button>
           </div>        </div></div>
 
       </div>
-      <div class="" style="margin-top:2%">
+      <div class="footer" style="margin-top:2%">
         <nav class="navbar navbar-expand-lg" style="width:100%">
 
           <footer class="" style="margin-left: 4.5%;width:94%;position:relative;display: flex;align-items: center;color:12302e;">
@@ -80,7 +69,7 @@
                 <li class="nav-item " style="padding-left: 2%;"><a class="nav-link" href="#">Joining Politics</a></li>
               </ul>
               <div class="col-sm-2" style="margin-top:2%;">
-                 <button type="button" class="btn" style="width: 70%;margin-top:12%; margin-left:20%;line-height: 2.3; border-radius:0;border-çolor:#12302e; background:#12302e;color:white;">Join us</button>
+                 <button type="button" class="btn" style="width: 70%;margin-top:12%; margin-left:20%;line-height: 2.3; border-radius:0;border-çolor:#008753; background:#008753;color:white;"><a href="/signup">Join Us</a></button>
               </div>
             </footer>
           </nav>
@@ -94,8 +83,83 @@
       </div>
     </div>
   </div>
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-</body>
-</html>
+
+  <script src=" https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script></body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/TextPlugin.min.js"></script>
+<script >
+function animateFrom(elem, direction) {
+direction = direction | 1;
+
+var x = 0,
+    y = direction * 100;
+if(elem.classList.contains("gs_reveal_fromLeft")) {
+  x = -100;
+  y = 0;
+} else if(elem.classList.contains("gs_reveal_fromRight")) {
+  x = 100;
+  y = 0;
+}
+gsap.fromTo(elem, {x: x, y: y, autoAlpha: 0}, {
+  duration: 1.25,
+  x: 0,
+  y: 0,
+  autoAlpha: 1,
+  ease: "expo",
+  overwrite: "auto"
+});
+
+gsap.to(elem, {
+   duration: 1.25,
+   x: 0,
+   y: -10,
+   autoAlpha: 1,
+   ease: "expo",
+   overwrite: "auto"
+ });
+ if(elem.classList.contains("quote")){
+ mySplitText = new SplitText(elem, {type:"words,chars"}),
+    chars = mySplitText.chars; //an array of all the divs that wrap each character
+
+gsap.set(elem, {perspective: 400});
+
+gsap.from(chars, {duration: 0.8, opacity:0, scale:0, y:80, rotationX:180, transformOrigin:"0% 50% -50",  ease:"back", stagger: 0.01}, "+=0");
+}
+ Splitting();
+ ScrollOut({
+   threshhold: 0.5,
+   cssProps: {
+     visibleY: true
+  },
+   targets: '[data-scroll]'});
+}
+
+function hide(elem) {
+gsap.set(elem, {autoAlpha: 0});
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.utils.toArray(".gs_reveal").forEach(function(elem) {
+  hide(elem); // assure that the element is hidden when scrolled into view
+
+  ScrollTrigger.create({
+    trigger: elem,
+    onEnter: function() { animateFrom(elem) },
+    onEnterBack: function() { animateFrom(elem, -1) },
+    onLeave: function() { hide(elem) } // assure that the element is hidden when scrolled into view
+  });
+});
+});
+
+</script>
+<script >
+
+
+  </script>
+  </html>
