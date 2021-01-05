@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from fds_app.admin import admin_site
 urlpatterns = [
     path('', include('fds_app.urls')),
-    path('admin/', admin.site.urls),
+    path('accounts/', include('accounts.urls')),
+    path('admin/', admin_site.urls),
 ]

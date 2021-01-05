@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- Moment.js -->
+    <!-- Tempus Dominus Bootstrap 4 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css" integrity="sha256-XPTBwC3SBoWHSmKasAk01c08M6sIA5gF5+sRxqak2Qs=" crossorigin="anonymous" />
+
+    <!--          -->
+    <style>
+
+ </style>
+   <script src="https://unpkg.com/scroll-out/dist/scroll-out.min.js"></script>
+  <title>FSD | Refer A Friend</title>
+ </head>
+  <body onload="">
+    <div class="container-fluid register">
+      <div class="row">
+          <div class="col-md-3 register-left" >
+          </div>
+          <div class="col-md-9 register-right">
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <a href="/"><img src="/static/fds_app/images/logo2.png" alt=""></a>
+                <h3>Invite your friends!</h3>
+                <p>Make sure to use your referral link when you share with your friends. Let them strat contributing positive change in the economic and social status of African youth through effective programs that delivers sustainable outcome.</p>
+                <div class="input-group mb-3">
+                  <input type="text" id="referrallink" name="referrallink" value="https://fsdinvite.com/d/EJnV9JNip7-ocDH33Mo" readonly="">
+                  <div class="input-group-append">
+                     <button class="btn btn-danger" type="button" onclick="copyText()">Copy</button>
+               </div>
+             </div>
+
+             <h3>Invite by Email</h3>
+             <p>Enter details of up to 5 of your friends you would like to see join us</p>
+
+                <form class="row register-form" method="post">
+                    {% csrf_token %}
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            {{form.first_name_1.errors}}
+                            <label for="{{ form.first_name_1.id_for_label }}">First Name</label>
+                            {{form.first_name_1}}
+                        </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="form-group">
+                          {{form.last_name_1.errors}}
+                          <label for="{{ form.last_name_1.id_for_label }}">Last Name</label>
+                          {{form.last_name_1}}
+                      </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        {{form.email_1.errors}}
+                        <label for="{{ form.email_1.id_for_label }}">Email</label>
+                        {{form.email_1}}
+                    </div>
+              </div>
+                  {{form.ref_email}}
+                  <input type="submit" class="btn btn-info" value="Refer">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  <script>
+    ScrollOut();
+  </script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js" integrity="sha256-VBLiveTKyUZMEzJd6z2mhfxIqz3ZATCuVMawPZGzIfA=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js" integrity="sha256-z0oKYg6xiLq3yJGsp/LsY9XykbweQlHl42jHv2XTBz4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script>
+  function copyText() {
+  /* Get the text field */
+  var copyText = document.getElementById("referrallink");
+  /* Select the text field */
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); /* For mobile devices */
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+  /* Alert the copied text */
+
+}
+</script>
+</body>
+</html>

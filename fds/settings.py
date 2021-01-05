@@ -33,7 +33,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'fds_app.apps.FdsAppConfig',
-    'django.contrib.admin',
+    'accounts.apps.AccountsConfig',
+    'fds_app.apps.MyAdminConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -77,8 +78,12 @@ WSGI_APPLICATION = 'fds.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'fsd',
+        'USER': 'postgres',
+        'PASSWORD': 'fsd_admin',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
