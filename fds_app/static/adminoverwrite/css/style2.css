@@ -274,6 +274,7 @@ margin-top: -0.8%;
 }
 .register-left {
 	background-image: url(static/fds_app/images/image20.png),linear-gradient(to left, rgba(255,255,255,1),rgb(255, 255 ,255, 0.1) ) ;
+	background-image: url(../images/image20.png),linear-gradient(to left, rgba(255,255,255,1),rgb(255, 255 ,255, 0.1) ) ;
 	background-repat: no-repeat;
 	text-align: center;
 	color: #fff;
