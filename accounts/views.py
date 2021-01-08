@@ -34,28 +34,25 @@ def signin(request):
             # Return an 'invalid login' error message.
     else:
         form = LoginForm()
-        return render(request, 'accounts/signin.html', {'error_message': "You are signed out",'form': form})
+        return render(request, 'accounts/signin.html', {'form': form})
 
 def signout(request):
     try:
-        request.session['user'].flush()
         del request.session['user']
     except KeyError:
         print("del issue")
         pass
     logout(request)
-    print("yyyy")
-    return render(request, 'accounts/signin.html', {'form': form})
+    return render(request, 'accounts/signin.html', {'error_message': "You are signed out", "form":LoginForm()})
 
 def dashboard(request):
     template = loader.get_template('accounts/dashboard.html')
     context = {}
     message =""
-    refdata = request.session['user']
-    print(refdata["email"])
-    print(refdata)
-    if not request.session['user']:
-      return render(request, 'accounts/signin.html', {'error_message': "You are not signed in",'form': form})
+    try:
+        refdata = request.session['user']
+    except:
+      return HttpResponseRedirect('signin', {'error_message': "You are not signed in"})
 
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
@@ -136,7 +133,6 @@ def verify_transaction(request):
     response = requests.get(url, headers = headers)
     response.raise_for_status()
     results = response.json()
-    print(results)
     Transactions.objects.create(
       transaction_reference = data["reference"],
       email = data["email"],
@@ -155,8 +151,15 @@ def verify_transaction(request):
             status_message = "Your transaction: "+data["reference"] + " failed."
     else:
           status_message = ""
+    getCount = Transactions.objects.filter(email = refdata['email']).count()
     jsondata = {
-        'transactionlist':Transactions.objects.filter(email=refdata['email']),
+        "transaction_reference": data["reference"],
+        "sn":getCount,
+        "payment_type" :  data['transtype'],
+        "payment_channel" : results['data']['channel'],
+        "status" : results['data']['status'],
+        "date_of_transaction" : results['data']['paid_at'],
+        "amount" : data['amount'],
         'status_message':status_message,
     }
     return JsonResponse(jsondata)

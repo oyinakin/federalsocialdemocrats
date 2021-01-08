@@ -13,5 +13,5 @@ urlpatterns = [
     path('signup', views.signup, name='signup'),
     path('referral', views.referral, name='referral'),
     path('thankyou', views.thankyou, name='thankyou'),
-
+    
 ]

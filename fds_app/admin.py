@@ -30,6 +30,8 @@ class MyAdminSite(AdminSite):
 
      @never_cache
      def index(self, request, extra_context=None):
+         site_title =''
+         index_title =''
          template = loader.get_template('admin/index.html')
          labels = ['Jan','Feb','Mar','Apr','May','Jun','July','Aug','Sep','Oct','Nov','Dec']
          data = [0,0,0,0,0,0,0,0,0,0,0,0]
@@ -61,6 +63,11 @@ class MyAdminSite(AdminSite):
             context = {}
             return super(MyAdminSite, self).logout(request, extra_context)
 
+     def sendsms(self):
+         pass
+
+     def sendemail(self):
+         pass
 admin_site = MyAdminSite(name='myadmin')
 admin_site.register(Members)
 admin_site.register(HitList)

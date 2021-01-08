@@ -18,6 +18,9 @@ height:10vh;
 .hidelogo{
 display:none !important;
 }
+.smallscreen{
+  display:block;
+}
 }
 .nav-btn div{
 width:18vw;
@@ -36,10 +39,12 @@ height: 0.5vh;
   background-color: #008753;
   display: block;
   border-radius: 1px;
-
   margin: auto;
   margin-bottom: 5px;
   margin-top: 10px;
+}
+#header{
+  display:none;
 }
 }
 </style>
@@ -67,6 +72,9 @@ height: 0.5vh;
       <li class="tablinks"><i class="fa fa-fw fa-user-friends"></i><a  href="#referrals">Referrals</a></li>
       <li class="tablinks"><i class="fa fa-fw fa-comments"></i><a  href="#chats">Chats</a></li>
       <li class="tablinks"><i class="fa fa-fw fa-newspaper"></i><a  href="#news">News</a></li>
+      <li class="tablinks smallscreen"><i class="fa fa-fw fa-street-view"></i><a  href="{{ site_url }}">View Site</a></li>
+      <li class="tablinks smallscreen"><i class="fa fa-fw fa-key"></i><a  href="{% url 'admin:password_change' %}">Change Password</a></li>
+      <li class="tablinks smallscreen"><i class="fa fa-fw fa-sign-out-alt"></i><a  href="{% url 'admin:logout' %}">Log Out</a></li>
     </ul>
   </div>
   </nav>

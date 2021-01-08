@@ -6,6 +6,6 @@ app_name = 'accounts'
 urlpatterns = [
 path('signin', views.signin, name='signin'),
 path('dashboard', views.dashboard, name='dashboard'),
-path('signout', views.signin, name='signout'),
+path('signout', views.signout, name='signout'),
 path('verify_transaction', views.verify_transaction, name='verify_transaction'),
 ]

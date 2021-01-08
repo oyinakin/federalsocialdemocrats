@@ -45,11 +45,16 @@
       margin-right: 3%
     }
     @media only screen and (max-width: 768px){
-      .col30,.col60{width: 30%}
+      .col30,.col60{width: 100%}
     }
+    #main, .tab-content{
+  		margin-left: 0 !important;
+  		width: 100% !important;
+  	}
     .row1, .row2,.row3, .rowfull, .row{
       width: 100%;
       margin-bottom: 5%;
+      display: block;
     }
     .row3{
       margin-top: -10%;
@@ -237,7 +242,7 @@ display: false
           $('.tab-pane2').not(divKey).hide();
           $(this).addClass("active");
           $('.tablinks').not(this).removeClass("active");
-          
+
 
       });
   });

@@ -233,12 +233,13 @@ header .logo span {
 	header {
 		display: block;
 	}
+
 	.nav-btn {
 		display: block;
 	}
 	.sidebar {
 		position: relative;
-		height: 378px;
+		height: auto;
 		width: 100%;
 		display: none;
 		margin-bottom: 40px;
