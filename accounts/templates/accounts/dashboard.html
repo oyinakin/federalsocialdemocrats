@@ -38,6 +38,25 @@
     	text-decoration: none;
     }
     @media only screen and (max-width: 768px){
+      .col30,.col60{width: 100%}
+      #main, .tab-content{
+        margin-left: 0 !important;
+        width: 100% !important;
+      }
+      .sidebar{
+        height:auto;
+      }
+      .row1, .row2,.row3, .rowfull, .row{
+        width: 100%;
+        margin-bottom: 5%;
+        display:block !important;
+      }
+      .row3{
+        margin-top:5% !important;
+      }
+    }
+
+    @media only screen and (max-width: 768px){
       .col30,.col60{width: 30%}
       .tab-content2{
         margin-left: 0;
@@ -329,7 +348,7 @@
   	$('.nav-btn').on('click', function(event) {
   		event.preventDefault();
   		/* Act on the event */
-  		$('.sidebar').slideToggle('fast');
+  		$('.sidebar').slideToggle('slow');
 
   		window.onresize = function(){
   			if ($(window).width() >= 768) {
@@ -358,7 +377,9 @@ $(document).ready(function(){
         $('.tab-pane2').not(divKey).hide();
         $(this).addClass("active");
         $('.tablinks').not(this).removeClass("active");
-
+        if ($(window).width() < 768) {
+          $('.sidebar').slideToggle('slow');
+        }
     });
 });
 </script>
