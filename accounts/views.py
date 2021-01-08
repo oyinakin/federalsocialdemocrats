@@ -37,7 +37,14 @@ def signin(request):
         return render(request, 'accounts/signin.html', {'error_message': "You are signed out",'form': form})
 
 def signout(request):
+    try:
+        request.session['user'].flush()
+        del request.session['user']
+    except KeyError:
+        print("del issue")
+        pass
     logout(request)
+    print("yyyy")
     return render(request, 'accounts/signin.html', {'form': form})
 
 def dashboard(request):
@@ -46,6 +53,10 @@ def dashboard(request):
     message =""
     refdata = request.session['user']
     print(refdata["email"])
+    print(refdata)
+    if not request.session['user']:
+      return render(request, 'accounts/signin.html', {'error_message': "You are not signed in",'form': form})
+
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         # member = Members(date_of_registration =datetime.now().strftime("%d/%m/%Y"))
