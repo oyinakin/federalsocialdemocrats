@@ -8,6 +8,40 @@
   th {
   cursor: pointer;
 }
+
+@media only screen and (max-width:580px){
+.nav-btn {
+width:100vw;
+background-color: #008753;
+height:10vh;
+}
+.hidelogo{
+display:none !important;
+}
+}
+.nav-btn div{
+width:18vw;
+background-color: #fff;
+height:80%;
+float: right;
+margin: 2%;
+border-radius: 5px;
+
+}
+
+@media only screen and (max-width:580px){
+.nav-btn div > span{
+height: 0.5vh;
+  width: 70%;
+  background-color: #008753;
+  display: block;
+  border-radius: 1px;
+
+  margin: auto;
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+}
 </style>
 {% endblock %}
 
@@ -15,13 +49,17 @@
 
 {% block bodyclass %}{{ block.super }} dashboard{% endblock %}
 {% block sidebar2 %}
-<div class="nav-btn">Menu</div>
+<div class="nav-btn">
+  <div class="">
+    <span style="transform: matrix(1, 0, 0, 1, 0, 0);"></span>
+      <span style="transform: matrix(1, 0, 0, 1, 0, 0);"></span>
+      <span style="transform: matrix(1, 0, 0, 1, 0, 0);"></span>
+  </div>
+</div>
 <div class="sidebar">
   <nav>
     <a class ="hidelogo" href="/"><img src="/static/accounts/images/logo3.png" alt=""></a>
-    <h5 class ="hidetext" style="color:#fff">Hello, </h5>
-
-  <div class="tab">
+    <div class="tab">
     <ul>
       <li class="tablinks active"><i class="fa fa-fw fa-dashboard"></i><a href="#overview">Dashboard</a></li>
       <li class="tablinks"><i class="fa fa-fw fa-users"></i><a href="#members" >Members</a></li>

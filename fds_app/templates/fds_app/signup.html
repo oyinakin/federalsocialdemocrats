@@ -11,6 +11,7 @@
     <!-- Moment.js -->
     <!-- Tempus Dominus Bootstrap 4 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css" integrity="sha256-XPTBwC3SBoWHSmKasAk01c08M6sIA5gF5+sRxqak2Qs=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/static/fds_app/build/css/intlTelInput.css">
 
     <!--          -->
     <style >
@@ -102,19 +103,36 @@
                                               {{form.first_name}}
                                           </div>
                                           <div class="form-group">
+                                            {{form.middle_name.errors}}
+                                            <label for="{{ form.middle_name.id_for_label }}">Middle Name</label>
+                                            {{form.middle_name}}
+                                          </div>
+                                          <div class="form-group">
+                                            {{form.last_name.errors}}
+                                            <label for="{{ form.last_name.id_for_label }}">Last Name</label>
+                                            {{form.last_name}}
+                                          </div>
+                                          <div class="form-group">
                                             {{form.gender.errors}}
                                             <label for="{{ form.gender.id_for_label }}">Gender</label>
                                             {{form.gender}}
                                           </div>
                                           <div class="form-group">
-                                            {{form.email.errors}}
-                                            <label for="{{ form.email.id_for_label }}">Email</label>
-                                            {{form.email}}
-                                        </div>
+                                            {{form.date_of_birth.errors}}
+                                            <label for="{{ form.date_of_birth_for_label }}">Date of Birth</label>
+                                              {{ form.date_of_birth }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{form.marital_status.errors}}
+                                                <label for="{{ form.marital_status_for_label }}">Marital Status</label>
+                                                {{form.marital_status}}
+                                            </div>
+                                          </div>
+                                      <div class="col-md-4">
                                         <div class="form-group">
-                                          {{form.state_of_origin.errors}}
-                                          <label for="{{ form.state_of_origin.id_for_label }}">State of Origin</label>
-                                          {{form.state_of_origin}}
+                                          {{form.country_of_residence.errors}}
+                                          <label for="{{ form.country_of_residence.id_for_label }}">Country of residence</label>
+                                          {{form.country_of_residence}}
                                         </div>
                                         <div class="form-group">
                                           {{form.state_of_residence.errors}}
@@ -122,30 +140,14 @@
                                           {{form.state_of_residence}}
                                         </div>
                                         <div class="form-group">
-                                          {{form.current_occupation.errors}}
-                                          <label for="{{ form.date_of_registration.id_for_label }}">Current Occupation</label>
-                                          {{ form.current_occupation }}
-                                      </div>
-
-                                    </div>
-                                      <div class="col-md-4">
-                                        <div class="form-group">
-                                          {{form.middle_name.errors}}
-                                          <label for="{{ form.middle_name.id_for_label }}">Middle Name</label>
-                                          {{form.middle_name}}
+                                          {{form.LGA_of_residence.errors}}
+                                          <label for="{{ form.LGA_of_residence.id_for_label }}">LGA of residence</label>
+                                          {{form.LGA_of_residence}}
                                         </div>
                                         <div class="form-group">
-                                          {{form.date_of_birth.errors}}
-                                          <label for="{{ form.date_of_birth_for_label }}">Date of Birth</label>
-                                          <!-- <div class="input-group date" id="datetimepicker2" data-target-input="nearest"> -->
-                                            {{ form.date_of_birth }}
-                                          <!-- <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
-                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div> -->
-                                          </div>
-                                        <div class="form-group">
-                                          {{form.phone_number.errors}}
-                                          <label for="{{ form.phone_number.id_for_label }}">Phone Number</label>
-                                          {{form.phone_number}}
+                                          {{form.state_of_origin.errors}}
+                                          <label for="{{ form.state_of_origin.id_for_label }}">State of Origin</label>
+                                          {{form.state_of_origin}}
                                         </div>
                                         <div class="form-group">
                                           {{form.LGA.errors}}
@@ -153,50 +155,47 @@
                                           {{form.LGA}}
                                         </div>
                                         <div class="form-group">
-                                          {{form.LGA_of_residence.errors}}
-                                          <label for="{{ form.LGA_of_residence.id_for_label }}">LGA of residence</label>
-                                          {{form.LGA_of_residence}}
+                                          {{form.highest_academic_qualification.errors}}
+                                          <label for="{{ form.highest_academic_qualification.id_for_label }}">Highest Academic Qualification</label>
+                                          {{form.highest_academic_qualification}}
                                         </div>
-                                        <div class="form-group">
-                                            {{form2.password.errors}}
-                                            <label for="form2.password.id_for_label">Password</label>
-                                            {{form2.password}}
-                                           <span id="message"></span>
-                                          </div>
-                                      </div>
+                                    </div>
                                       <div class="col-md-4">
                                         <div class="form-group">
-                                          {{form.last_name.errors}}
-                                          <label for="{{ form.last_name.id_for_label }}">Last Name</label>
-                                          {{form.last_name}}
-                                        </div>
+                                          {{form.current_occupation.errors}}
+                                          <label for="{{ form.date_of_registration.id_for_label }}">Current Occupation</label>
+                                          {{ form.current_occupation }}
+                                      </div>
                                         <div class="form-group">
-                                            {{form.marital_status.errors}}
-                                            <label for="{{ form.marital_status_for_label }}">Marital Status</label>
-                                            {{form.marital_status}}
+                                          {{form.phone_number.errors}}
+                                          <label for="{{ form.phone_number.id_for_label }}">Phone Number</label>
+                                          {{form.phone_number}}
                                         </div>
+
                                         <div class="form-group">
                                           {{form.whatsapp_number.errors}}
                                           <label for="{{ form.whatsapp_number.id_for_label }}">Whatsapp Number</label>
                                           {{form.whatsapp_number}}
                                         </div>
+
                                           <div class="form-group">
-                                            {{form.country_of_residence.errors}}
-                                            <label for="{{ form.country_of_residence.id_for_label }}">Country of residence</label>
-                                            {{form.country_of_residence}}
-                                          </div>
-                                          <div class="form-group">
-                                            {{form.highest_academic_qualification.errors}}
-                                            <label for="{{ form.highest_academic_qualification.id_for_label }}">Highest Academic Qualification</label>
-                                            {{form.highest_academic_qualification}}
-                                          </div>
+                                            {{form.email.errors}}
+                                            <label for="{{ form.email.id_for_label }}">Email</label>
+                                            {{form.email}}
+                                        </div>
                                         <div class="form-group">
-                                            {{form.date_of_registration}}
-                                            {{form2.confirmpassword.errors}}
-                                            <label for="form2.confirmpassword.id_for_label">Confirm Password</label>
-                                            {{form2.confirmpassword}}
-                                           <span id="message"></span>
+                                              {{form2.password.errors}}
+                                              <label for="form2.password.id_for_label">Password</label>
+                                              {{form2.password}}
+                                             <span id="message"></span>
                                           </div>
+                                          <div class="form-group">
+                                              {{form.date_of_registration}}
+                                              {{form2.confirmpassword.errors}}
+                                              <label for="form2.confirmpassword.id_for_label">Confirm Password</label>
+                                              {{form2.confirmpassword}}
+                                             <span id="message"></span>
+                                            </div>
                                        </div>
 
                                       <input type="submit" class="btn btn-info" value="Register">
@@ -216,7 +215,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js" integrity="sha256-z0oKYg6xiLq3yJGsp/LsY9XykbweQlHl42jHv2XTBz4=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="/static/fds_app/build/js/intlTelInput-jquery.min.js"></script>
+<script src="/static/fds_app/build/js/intlTelInput.min.js"></script>
 
+<script src="/static/fds_app/build/js/utils.js"></script>
 <script>
 $('#password, #confirmpassword').on('keyup', function () {
   if ($('#password').val() == $('#confirmpassword').val()) {
@@ -229,6 +231,8 @@ $(function () {
    $("#id_date_of_registration").val(moment().format("YYYY-MM-DD"));
  });
 $(document).ready(function() {
+
+window.jsonarray = []
 $.getJSON("static/fds_app/json/nigerian-states.json", function(obj) {
     $("#id_state_of_origin").empty();
     $("#id_state_of_origin").append("<option>" + "--Select--" + "</option>");
@@ -240,10 +244,20 @@ $.getJSON("static/fds_app/json/countries.json", function(obj) {
         $("#id_country_of_residence").empty();
         $("#id_country_of_residence").append("<option>" + "--Select--" + "</option>");
         for (x in obj) {
+            jsonarray.push({'country_name':obj[x].country_name, 'country_code':obj[x].country_code})
             $("#id_country_of_residence").append($("<option></option>").val(obj[x].country_name).html(obj[x].country_name));
         }});
 });
+$("#telephone").intlTelInput({
+ utilsScript: "utils.js",
+ preferredCountries: ["ng","us" ]  //options here
 
+});
+$("#wtelephone").intlTelInput({
+utilsScript: "utils.js" ,
+preferredCountries: ["ng","us" ] // options here
+
+});
 function getLGA(objState){
   $.getJSON("static/fds_app/json/nigerian-states.json", function(obj) {
     $("#id_LGA").empty();
@@ -253,11 +267,20 @@ function getLGA(objState){
     }});
   };
   function getState(objCountry){
+    selectedCountry = jsonarray.findIndex(x => x.country_name ===objCountry)
+    selectedCode = jsonarray[selectedCountry]['country_code'].toLowerCase()
+    window.alert(selectedCode)
+        //options here
+    var iti = intlTelInput(document.querySelector("#telephone"));
+    var witi = intlTelInput(document.querySelector("#wtelephone"));
+    iti.setCountry(selectedCode)
+    witi.setCountry(selectedCode)
     if(objCountry === 'Nigeria'){
     $.getJSON("static/fds_app/json/nigerian-states.json", function(obj) {
       $("#id_state_of_residence").empty();
       $("#id_state_of_residence").append("<option>" + "--Select--" + "</option>");
       for (x in obj[0]) {
+
           $("#id_state_of_residence").append($("<option></option>").val(x).html(x));
       }});
     }

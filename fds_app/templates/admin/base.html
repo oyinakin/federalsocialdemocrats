@@ -237,7 +237,13 @@ display: false
           $('.tab-pane2').not(divKey).hide();
           $(this).addClass("active");
           $('.tablinks').not(this).removeClass("active");
+          window.onresize = function(){
+      			if ($(window).width() >= 768) {
 
+      			} else {
+      				$('.sidebar').slideToggle('fast');
+      			}
+      		};
 
       });
   });

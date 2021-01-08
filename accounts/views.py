@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, Http404, HttpResponseRedirect
+from django.http import HttpResponse,JsonResponse, Http404, HttpResponseRedirect
 from django.template import loader
 from datetime import datetime
 from django.urls import reverse
@@ -7,10 +7,13 @@ from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from django.utils import timezone
 from fds_app.forms import MemberForm, HitListForm, LoginForm
-from fds_app.models import Members, HitList
+from .forms import paymentForm,ChangePasswordForm
+from fds_app.models import Members, HitList, Transactions
 from django.contrib.auth.models import User
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate,logout
 from django.contrib.auth.decorators import login_required
+import requests
+import json
 
 # Create your views here.
 def signin(request):
@@ -31,7 +34,12 @@ def signin(request):
             # Return an 'invalid login' error message.
     else:
         form = LoginForm()
-        return render(request, 'accounts/signin.html', {'form': form})
+        return render(request, 'accounts/signin.html', {'error_message': "You are signed out",'form': form})
+
+def signout(request):
+    logout(request)
+    return render(request, 'accounts/signin.html', {'form': form})
+
 def dashboard(request):
     template = loader.get_template('accounts/dashboard.html')
     context = {}
@@ -41,6 +49,7 @@ def dashboard(request):
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         # member = Members(date_of_registration =datetime.now().strftime("%d/%m/%Y"))
+
         form = HitListForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
@@ -84,11 +93,59 @@ def dashboard(request):
 
              return render(request, 'accounts/dashboard.html', {'form': HitListForm(),'message':message})
 
-        else:
-            print(form.errors)
-            return render(request, 'accounts/dashboard.html')
+        elif paymentForm(request.POST).is_valid():
+            payform= paymentForm(request.POST)
+            paymessage ="got here"
+            print(payform.errors)
+            #context = {'active_tab':'transactions',"paymessage":paymessage, 'payform': paymentForm(initial={'amount':0.00})}
+            #return render(request, 'accounts/dashboard.html', {'active_tab':'transactions',"paymessage":paymessage, 'payform': paymentForm(initial={'amount':0.00})})
+
+            return HttpResponse("paymessage")
     # if a GET (or any other method) we'll create a blank form
     else:
         form = HitListForm()
-        return render(request, 'accounts/dashboard.html', {'form': form})
+        user = Members.objects.filter(email=refdata['email'])
+        transactionlist= Transactions.objects.filter(email=refdata['email'])
+        data = {'email':refdata['email'],
+        "first_name" : user[0].first_name,
+        "middle_name" : user[0].middle_name,
+        "last_name" : user[0].last_name,
+        "amount":0.00}
+        payform = paymentForm(data)
+        cpwordform = ChangePasswordForm()
+        return render(request, 'accounts/dashboard.html', {'transactionlist':transactionlist,'cpwordform' : cpwordform , 'form': form, 'payform': payform} )
     return HttpResponse(template.render(context, request))
+
+def verify_transaction(request):
+    refdata = request.session['user']
+    user = Members.objects.filter(email=refdata['email'])
+    data = request.POST
+    headers = {"Authorization": "Bearer sk_test_3123b38b97cf598adf6ee1f78561d70869b328c5"}
+    url = "https://api.paystack.co/transaction/verify/"+data["reference"]
+    response = requests.get(url, headers = headers)
+    response.raise_for_status()
+    results = response.json()
+    print(results)
+    Transactions.objects.create(
+      transaction_reference = data["reference"],
+      email = data["email"],
+      first_name = data['first_name'],
+      middle_name = data['middle_name'],
+      last_name =data['last_name'],
+      amount = data['amount'],
+      payment_type =  data['transtype'],
+      payment_channel = results['data']['channel'],
+      status = results['data']['status'],
+      date_of_transaction = results['data']['paid_at'],
+      )
+    if results['data']['status'] == 'success':
+          status_message = "Your transaction: "+data["reference"] + " was successful."
+    elif results['data']['status'] == 'failed':
+            status_message = "Your transaction: "+data["reference"] + " failed."
+    else:
+          status_message = ""
+    jsondata = {
+        'transactionlist':Transactions.objects.filter(email=refdata['email']),
+        'status_message':status_message,
+    }
+    return JsonResponse(jsondata)

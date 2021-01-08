@@ -10,6 +10,8 @@ QUALIFICATION =(('PhD','PhD'),('Masters','Masters'),('Bachelors, HND or Equivale
 OCCUPATION =(('Artisan/Farmer/Hand-Work','Artisan/Farmer/Hand-Work'),('Civil Servant','Civil Servant'),('Employed (Private Sector/NGO)','Employed (Private Sector/NGO)'),
 ('Entrepreneur/Business Owner','Entrepreneur/Business Owner'),('Unemployed','Unemployed'),('Retired','Retired'),
 ('Never attended school','Never attended school'))
+TRANSTYPE = (('Subscription', 'Subscription'),('Donation', 'Donation'))
+PAYMENT_METHOD = (('Card', 'Card'),('Bank', 'Bank'),('USSD', 'USSD'),('Transfer', 'Transfer'))
 
 class NewsAuthor(models.Model):
     first_name = models.CharField(max_length=70)
@@ -29,15 +31,28 @@ class NewsArticle(models.Model):
     def __str__(self):
         return self.news_title
 
+class Transactions(models.Model):
+    transaction_reference = models.CharField(max_length=70)
+    email = models.EmailField(max_length=200)
+    first_name = models.CharField(max_length=70)
+    middle_name = models.CharField(max_length=70)
+    last_name = models.CharField(max_length=70)
+    amount = models.FloatField(max_length=70)
+    payment_type =  models.CharField(max_length=12, choices=TRANSTYPE)
+    payment_channel = models.CharField(max_length=10)
+    status = models.CharField(max_length=10)
+    date_of_transaction = models.DateTimeField()
+
+
 class HitList(models.Model):
     email = models.CharField(max_length=200)
     first_name = models.CharField(max_length=70)
     last_name = models.CharField(max_length=70)
-    ref1_email = models.CharField(max_length=70)
+    ref1_email = models.EmailField(max_length=70)
     ref1_date = models.DateField()
-    ref2_email = models.CharField(max_length=70, blank = True, null= True)
+    ref2_email = models.EmailField(max_length=70, blank = True, null= True)
     ref2_date = models.DateField(blank = True, null= True)
-    ref3_email = models.CharField(max_length=70, blank = True, null= True)
+    ref3_email = models.EmailField(max_length=70, blank = True, null= True)
     ref3_date = models.DateField(blank = True, null= True)
     high_frequency = models.IntegerField(default = 0)
 
@@ -46,7 +61,7 @@ class Members(models.Model):
     first_name = models.CharField(max_length=70)
     middle_name = models.CharField(max_length=70)
     last_name = models.CharField(max_length=70)
-    email = models.CharField(max_length=200)
+    email = models.EmailField(max_length=200)
     gender = models.CharField(max_length=7, choices=GENDER)
     date_of_birth = models.DateField()
     marital_status = models.CharField(max_length=9, choices=MARITAL_STATUS)
