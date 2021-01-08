@@ -38,12 +38,13 @@
     }
     @media only screen and (max-width: 768px){
       .col30,.col60{width: 30%}
+      .tab-content2{
+        margin-left: 0;
+        width: 100%;
+        margin-right: 0;
+      }
     }
-    .tab-content2{
-      margin-left: 0;
-      width: 100%;
-      margin-right: 0;
-    }
+
     .row1, .row2,.row3, .rowfull, .row{
       width: 100%;
       margin: auto;
@@ -356,13 +357,7 @@ $(document).ready(function(){
         $('.tab-pane2').not(divKey).hide();
         $(this).addClass("active");
         $('.tablinks').not(this).removeClass("active");
-        window.onresize = function(){
-          if ($(window).width() >= 768) {
 
-          } else {
-            $('.sidebar').slideToggle('fast');
-          }
-        };
     });
 });
 </script>
