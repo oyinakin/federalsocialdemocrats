@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='post',
             name='post_images',
-            field=ImageField(default='', upload_to='post_images'),
+            field=models.ImageField(upload_to='post_images'),
             preserve_default=False,
         ),
         migrations.DeleteModel(
