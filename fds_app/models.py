@@ -1,7 +1,6 @@
 from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import User
-from django_thumbs.db.models import ImageWithThumbsField
 from ckeditor_uploader.fields import RichTextUploadingField
 
 from django.core.validators import validate_email
