@@ -13,5 +13,6 @@ urlpatterns = [
     path('signup', views.signup, name='signup'),
     path('referral', views.referral, name='referral'),
     path('thankyou', views.thankyou, name='thankyou'),
-    
+    path('news', views.news, name='news'),
+    path('news/post_detail/<slug:slug>/', views.post_detail, name='post_detail'),
 ]

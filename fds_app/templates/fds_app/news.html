@@ -1,0 +1,76 @@
+{% extends 'fds_app/base6.html' %}
+{% load static %}
+
+{% block title%} FSD | News {% endblock %}
+{%block style%}
+.ontainer{
+	çolor:#fff;
+	margin-left:6%;
+	margin-top:8%;
+	width:89%;
+	 height:auto;
+	background: url('/static/fds_app/images/Rectangle12.png') no-repeat;
+}
+@media only screen and (max-width: 768px){
+
+	.image-wrapper, .panel-wrapper, .panel-group{
+		width: 100% !important;
+		display:block;
+	}
+}
+@media only screen and (max-width: 768px) {
+[class="ontainer"]{
+  width:100vw !important;
+  margin-left:0%;
+	background: url('/static/fds_app/images/Rectangle12.png') no-repeat;
+
+}}
+p{
+	padding: 1% 2.5%;
+	font-size: 16px;
+}
+{% endblock %}
+{% block links %}
+<li class="nav-item " style="padding-left: 1%;"><a class="nav-link active" href="/">Home</a></li>
+<li class="nav-item " style="padding-left: 2%;"><a class="nav-link" href="/whoweare">Who we are</a></li>
+<li class="nav-item " style=" padding-left: 2%;"><a class="nav-link" href="/wherewestand">Where we stand </a></li>
+<li class="nav-item " style="padding-left: 2%;"><a class="nav-link" href="/takeaction">Take Action</a></li>
+<li class="nav-item " style="padding-left: 2%;"><a class="nav-link" href="/2023elections">2023 Elections</a></li>
+<li class="nav-item " style="padding-left: 2%;padding-right: 0%; "><a class="nav-link" href="/joiningpolitics">Joining Politics</a></li>
+
+{% endblock %}
+{%block content%}
+<div class="">
+  <div class="main-content">
+	{% if posts %}
+    {% for post in posts %}
+		<div class="panel-group">
+			<div class="image-wrapper">
+	      <div class="">
+	      	<img  style=""class="post-image" src={{post.image_url}}{{post.image_extension}} />
+	      </div>
+			</div>
+			<div class="panel-wrapper">
+				<div class="panel-head">
+	        {{post.title}}
+					</div>
+				<div class="panel-body">
+					{{post.content|striptags|truncatewords:"140"|linebreaks }}
+	      <a href="{% url 'fds_app:post_detail' post.slug %}" style="padding: 1% 2%; font-size:16px">Read more</a>
+				</div>
+				</div>
+		</div>
+		{% endfor %}
+
+	{% else %}
+	<div class="panel-wrapper">
+		<div class="panel-head">
+    There are currently no news post
+		</div>
+		<div class="panel-body">
+		</div>
+		{% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

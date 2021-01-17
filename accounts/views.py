@@ -10,11 +10,13 @@ from fds_app.forms import MemberForm, HitListForm, LoginForm
 from .forms import paymentForm,ChangePasswordForm
 from fds_app.models import Members, HitList, Transactions
 from django.contrib.auth.models import User
-from django.contrib.auth import login, authenticate,logout
+from django.contrib.auth import views, login, authenticate,logout
 from django.contrib.auth.decorators import login_required
 import requests
 import json
-
+from django.core.mail import send_mail
+from django.conf import settings
+from decouple import config
 # Create your views here.
 def signin(request):
     if request.method == 'POST':
@@ -25,7 +27,8 @@ def signin(request):
            login(request, user)
            # Redirect to a success page.
            request.session['user'] = request.POST
-           return HttpResponseRedirect('dashboard')
+
+           return HttpResponseRedirect(reverse('accounts:dashboard'))
         else:
             form = LoginForm()
             return render(request, 'accounts/signin.html', {'form': form,
@@ -36,6 +39,13 @@ def signin(request):
         form = LoginForm()
         return render(request, 'accounts/signin.html', {'form': form})
 
+def password_reset(request):
+
+    return HttpResponseRedirect(reverse('accounts:password_reset_confirm'))
+
+def password_reset_confirm(request):
+    pass
+
 def signout(request):
     try:
         del request.session['user']
@@ -43,7 +53,7 @@ def signout(request):
         print("del issue")
         pass
     logout(request)
-    return render(request, 'accounts/signin.html', {'error_message': "You are signed out", "form":LoginForm()})
+    return HttpResponseRedirect('signin', {'error_message': "You are signed out"})
 
 def dashboard(request):
     template = loader.get_template('accounts/dashboard.html')
@@ -111,9 +121,9 @@ def dashboard(request):
             return HttpResponse("paymessage")
     # if a GET (or any other method) we'll create a blank form
     else:
-        form = HitListForm()
+        form2 = HitListForm()
         user = Members.objects.filter(email=refdata['email'])
-        transactionlist= Transactions.objects.filter(email=refdata['email'])
+        transactionlist= Transactions.objects.filter(email=refdata['email']).order_by('-date_of_transaction')
         data = {'email':refdata['email'],
         "first_name" : user[0].first_name,
         "middle_name" : user[0].middle_name,
@@ -121,14 +131,17 @@ def dashboard(request):
         "amount":0.00}
         payform = paymentForm(data)
         cpwordform = ChangePasswordForm()
-        return render(request, 'accounts/dashboard.html', {'transactionlist':transactionlist,'cpwordform' : cpwordform , 'form': form, 'payform': payform} )
+        form = MemberForm()
+        member = Members.objects.get(email=refdata['email'])
+        form = MemberForm(instance=member)
+        return render(request, 'accounts/dashboard.html', {'transactionlist':transactionlist,'cpwordform' : cpwordform , 'form2': form2,'form': form, 'payform': payform} )
     return HttpResponse(template.render(context, request))
 
 def verify_transaction(request):
     refdata = request.session['user']
     user = Members.objects.filter(email=refdata['email'])
     data = request.POST
-    headers = {"Authorization": "Bearer sk_test_3123b38b97cf598adf6ee1f78561d70869b328c5"}
+    headers = {"Authorization": "Bearer " + config("PAYSTACK_SECRET_KEY")}
     url = "https://api.paystack.co/transaction/verify/"+data["reference"]
     response = requests.get(url, headers = headers)
     response.raise_for_status()
@@ -151,15 +164,17 @@ def verify_transaction(request):
             status_message = "Your transaction: "+data["reference"] + " failed."
     else:
           status_message = ""
-    getCount = Transactions.objects.filter(email = refdata['email']).count()
+    transactionlist= Transactions.objects.filter(email=refdata['email']).order_by('-date_of_transaction')
+    print(transactionlist)
     jsondata = {
-        "transaction_reference": data["reference"],
-        "sn":getCount,
-        "payment_type" :  data['transtype'],
-        "payment_channel" : results['data']['channel'],
-        "status" : results['data']['status'],
-        "date_of_transaction" : results['data']['paid_at'],
-        "amount" : data['amount'],
+        "transactionlist": list(transactionlist.values()),
         'status_message':status_message,
     }
+    sendcode = send_mail(
+    "Your Payment has been received",
+    'Dear '+  request.POST['first_name'] +' ' +  request.POST['first_name'],
+    from_email="Federal Social Democrats<"+settings.EMAIL_HOST_USER+">",
+    recipient_list=  [request.POST['email']],
+    fail_silently=False,
+    )
     return JsonResponse(jsondata)

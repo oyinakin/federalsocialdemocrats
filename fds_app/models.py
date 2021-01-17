@@ -1,6 +1,10 @@
 from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import User
+from django_thumbs.db.models import ImageWithThumbsField
+from ckeditor_uploader.fields import RichTextUploadingField
+
+from django.core.validators import validate_email
 GENDER = (('Female', 'Female'),('Male', 'Male'))
 MARITAL_STATUS = (('Divorced', 'Divorced'),('Married', 'Married'), ('Separated', 'Separated'),('Single', 'Single'),('Widowed', 'Widowed'))
 QUALIFICATION =(('PhD','PhD'),('Masters','Masters'),('Bachelors, HND or Equivalent','Bachelors, HND or Equivalent'),
@@ -20,6 +24,12 @@ class NewsAuthor(models.Model):
     def __str__(self):
         return self.first_name +' '+ self.last_name
 
+class Category(models.Model):
+    title = models.CharField(max_length=200, unique=True)
+    slug = models.SlugField(max_length=200, unique=True)
+    def __str__(self):
+        return self.title
+
 class NewsArticle(models.Model):
     news_id = models.CharField(max_length=5)
     news_title = models.TextField()
@@ -30,6 +40,43 @@ class NewsArticle(models.Model):
 
     def __str__(self):
         return self.news_title
+STATUS = (
+    (0,"Draft"),
+    (1,"Publish")
+)
+class Post(models.Model):
+    title = models.CharField(max_length=200, unique=True)
+    slug = models.SlugField(max_length=200, unique=True)
+    author = models.ForeignKey(User, on_delete= models.CASCADE,related_name='blog_posts')
+    updated_on = models.DateTimeField(auto_now= True,blank = True,)
+    content = RichTextUploadingField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    status = models.IntegerField(choices=STATUS, default=0)
+    summary = models.TextField()
+    category=models.ForeignKey(Category, on_delete= models.CASCADE)
+    image_url=models.CharField(max_length=200, blank=True)
+    image_extension=models.CharField(max_length=200, blank=True)
+    class Meta:
+        ordering = ['-created_on']
+
+    def __str__(self):
+        return self.title
+class PostComment(models.Model):
+    title = models.CharField(max_length=200, unique=True)
+    author = models.ForeignKey(User, on_delete= models.CASCADE)
+    content = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    post=models.ForeignKey(Post, on_delete= models.CASCADE)
+
+class Tag(models.Model):
+    title = models.CharField(max_length=200, unique=True)
+    slug = models.SlugField(max_length=200, unique=True)
+    content = models.TextField()
+class PostTag(models.Model):
+    post=models.ForeignKey(Post, on_delete= models.CASCADE)
+    tag=models.ForeignKey(Tag, on_delete= models.CASCADE)
+
+
 
 class Transactions(models.Model):
     transaction_reference = models.CharField(max_length=70)
@@ -61,7 +108,7 @@ class Members(models.Model):
     first_name = models.CharField(max_length=70)
     middle_name = models.CharField(max_length=70)
     last_name = models.CharField(max_length=70)
-    email = models.EmailField(max_length=200)
+    email = models.EmailField(max_length=200,validators=[validate_email])
     gender = models.CharField(max_length=7, choices=GENDER)
     date_of_birth = models.DateField()
     marital_status = models.CharField(max_length=9, choices=MARITAL_STATUS)
@@ -70,8 +117,8 @@ class Members(models.Model):
     LGA = models.CharField(max_length=70)
     state_of_residence =  models.CharField(max_length=70)
     LGA_of_residence = models.CharField(max_length=70)
-    phone_number = models.CharField(max_length=13)
-    whatsapp_number = models.CharField(max_length=13)
+    phone_number = models.CharField(max_length=16)
+    whatsapp_number = models.CharField(max_length=16)
     highest_academic_qualification = models.CharField(max_length=29, choices=QUALIFICATION)
     current_occupation = models.CharField(max_length=29, choices=OCCUPATION)
     date_of_registration = models.DateField(default = datetime.now().strftime("%Y-%m-%d"))

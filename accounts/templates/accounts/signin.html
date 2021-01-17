@@ -108,7 +108,7 @@
                                           {{form.password}}
                                         </div>
                                         <input type="submit" class="btn btn-info" value="Sign In">
-
+                                         <p><a href="password_reset">Forgot password?</a></p>
                                        </div>
 
 
@@ -128,62 +128,6 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
-<script>
-$(function () {
 
-   $("#id_date_of_registration").val(moment().format("YYYY-MM-DD"));
- });
-$(document).ready(function() {
-$.getJSON("static/accounts/json/nigerian-states.json", function(obj) {
-    $("#id_state_of_origin").empty();
-    $("#id_state_of_origin").append("<option>" + "--Select--" + "</option>");
-    for (x in obj[0]) {
-        $("#id_state_of_origin").append($("<option></option>").val(x).html(x));
-    }});
-
-$.getJSON("static/accounts/json/countries.json", function(obj) {
-        $("#id_country_of_residence").empty();
-        $("#id_country_of_residence").append("<option>" + "--Select--" + "</option>");
-        for (x in obj) {
-            $("#id_country_of_residence").append($("<option></option>").val(obj[x].country_name).html(obj[x].country_name));
-        }});
-});
-
-function getLGA(objState){
-  $.getJSON("static/accounts/json/nigerian-states.json", function(obj) {
-    $("#id_LGA").empty();
-    $("#id_LGA").append("<option>" + "--Select--" + "</option>");
-    for (x in obj[0][objState]) {
-        $("#id_LGA").append($("<option></option>").val(obj[0][objState][x]).html(obj[0][objState][x]));
-    }});
-  };
-  function getState(objCountry){
-    if(objCountry === 'Nigeria'){
-    $.getJSON("static/accounts/json/nigerian-states.json", function(obj) {
-      $("#id_state_of_residence").empty();
-      $("#id_state_of_residence").append("<option>" + "--Select--" + "</option>");
-      for (x in obj[0]) {
-          $("#id_state_of_residence").append($("<option></option>").val(x).html(x));
-      }});
-    }
-  else{
-      $("#id_state_of_residence").append($("<option></option>").val('Not Applicable').html('Not Applicable'));
-      $("#id_LGA_of_residence").append($("<option></option>").val('Not Applicable').html('Not Applicable'));
-   }
- }
- function getLGAResidence(objState){
-   if(objState === 'Not Applicable'){
-
-   }
-   else{
-   $.getJSON("static/accounts/json/nigerian-states.json", function(obj) {
-     $("#id_LGA_of_residence").empty();
-     $("#id_LGA_of_residence").append("<option>" + "--Select--" + "</option>");
-     for (x in obj[0][objState]) {
-         $("#id_LGA_of_residence").append($("<option></option>").val(obj[0][objState][x]).html(obj[0][objState][x]));
-     }});
-   }
- }
-</script>
 </body>
 </html>

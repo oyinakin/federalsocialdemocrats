@@ -7,11 +7,11 @@ from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from django.utils import timezone
 from .forms import MemberForm, HitListForm, LoginForm
-from .models import Members, HitList
+from .models import Members, Post, HitList
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
-
+from django.core.mail import send_mail
 
 def index(request):
     template = loader.get_template('fds_app/index.html')
@@ -43,6 +43,15 @@ def elections2023(request):
     context = {}
     return HttpResponse(template.render(context, request))
 
+def news(request):
+    template = loader.get_template('fds_app/news.html')
+    context = {"posts":Post.objects.all()}
+    return HttpResponse(template.render(context, request))
+def post_detail(request, slug):
+    template = loader.get_template('fds_app/post_detail.html')
+    post = Post.objects.filter(slug=slug)
+    return render(request, 'fds_app/post_detail.html', {'post': post[0]})
+
 def signup(request):
     template = loader.get_template('fds_app/signup.html')
     context = {}
@@ -70,10 +79,17 @@ def signup(request):
                # process the data in form.cleaned_data as required
                # ...
                #redirect to a new URL:
+               sendcode = send_mail(
+               "Your registration was successful",
+               'Dear '+  request.POST['first_name'] +' ' +  request.POST['first_name'],
+               from_email="Federal Social Democrats<"+settings.EMAIL_HOST_USER+">",
+               recipient_list=  request.POST['email'],
+               fail_silently=False,
+               )
                return HttpResponseRedirect('thankyou')
         else:
             print(form.errors)
-            return render(request, 'fds_app/signup.html')
+            return render(request, 'fds_app/signup.html',{'form':form,'form2':LoginForm(),'error_message':form.errors })
     # if a GET (or any other method) we'll create a blank form
     else:
         form = MemberForm()

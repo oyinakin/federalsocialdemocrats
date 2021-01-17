@@ -16,8 +16,26 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from fds_app.admin import admin_site
+from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.conf.urls import url, include
+from django.views.static import serve
 urlpatterns = [
     path('', include('fds_app.urls')),
     path('accounts/', include('accounts.urls')),
     path('admin/', admin_site.urls),
+    path('admin/password_change', auth_views.PasswordChangeView.as_view(template_name='admin/password_change_form.html'),name='password_change',),
+    path('admin/logout', auth_views.LogoutView.as_view(template_name='admin/logout.html'),name='logout',),
+    path('accounts/password_reset',auth_views.PasswordResetView.as_view(template_name='accounts/password_reset_form.html'),name='password_reset',),
+    path('accounts/password_reset/done',auth_views.PasswordResetDoneView.as_view(template_name='accounts/password_reset_done.html'),name='password_reset_done',),
+    path('accounts/reset/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(template_name='accounts/password_reset_confirm.html'),name='password_reset_confirm',),
+    path('accounts/reset/done/',auth_views.PasswordResetCompleteView.as_view(template_name='accounts/password_reset_complete.html'),name='password_reset_complete',),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+
 ]
+if settings.DEBUG:
+    urlpatterns += [
+        url(r'^media/(?P<path>.*)$', serve, {
+            'document_root': settings.MEDIA_ROOT
+        }),
+    ]

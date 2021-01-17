@@ -2,7 +2,10 @@
 {% load i18n %}
 
 {% block nav-sidebar %}{% endblock %}
-{% block status %}: Logged Out{% endblock %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}">{% translate 'Home' %}</a>
+&rsaquo; {% translate 'Logged Out' %}
+</div>
 {% block content %}
 
 <p>{% translate "Thanks for spending some quality time with the Web site today." %}</p>

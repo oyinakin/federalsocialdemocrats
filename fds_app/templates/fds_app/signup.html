@@ -12,7 +12,6 @@
     <!-- Tempus Dominus Bootstrap 4 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css" integrity="sha256-XPTBwC3SBoWHSmKasAk01c08M6sIA5gF5+sRxqak2Qs=" crossorigin="anonymous" />
     <link rel="stylesheet" href="/static/fds_app/build/css/intlTelInput.css">
-
     <!--          -->
     <style >
     .btn-info{
@@ -66,6 +65,12 @@
     border-top-left-radius: 5% 5%;
     border-bottom-left-radius: 10% 50%;
   }
+  .errorlist{
+    color: red;
+font-size: 14px;
+margin: 0;
+margin-top: -10%;
+  }
 [data-scroll] {
   transition: opacity 1s;
 }
@@ -93,8 +98,8 @@
           <div class="col-md-7 register-right">
             <div class="tab-content" id="myTabContent">
               <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                  <p class="register-heading">{% if error_message %}<strong>{{ error_message }}</strong>{% endif %}</p>
-                    <form class="row register-form" method="post">
+                  <p class="register-heading" style="color:red">{% if error_message %}<strong>{{ error_message }}</strong>{% endif %}</p>
+                    <form class="row register-form" id="signup"method="post">
                           {% csrf_token %}
                                       <div class="col-md-4">
                                           <div class="form-group">
@@ -266,13 +271,13 @@ function getLGA(objState){
         $("#id_LGA").append($("<option></option>").val(obj[0][objState][x]).html(obj[0][objState][x]));
     }});
   };
+  var iti = intlTelInput(document.querySelector("#telephone"));
+  var witi = intlTelInput(document.querySelector("#wtelephone"));
+
   function getState(objCountry){
     selectedCountry = jsonarray.findIndex(x => x.country_name ===objCountry)
     selectedCode = jsonarray[selectedCountry]['country_code'].toLowerCase()
-    window.alert(selectedCode)
         //options here
-    var iti = intlTelInput(document.querySelector("#telephone"));
-    var witi = intlTelInput(document.querySelector("#wtelephone"));
     iti.setCountry(selectedCode)
     witi.setCountry(selectedCode)
     if(objCountry === 'Nigeria'){
@@ -285,12 +290,15 @@ function getLGA(objState){
       }});
     }
   else{
-      $("#id_state_of_residence").append($("<option></option>").val('Not Applicable').html('Not Applicable'));
-      $("#id_LGA_of_residence").append($("<option></option>").val('Not Applicable').html('Not Applicable'));
+      $("#id_state_of_residence").append($("<option></option>").val('Non Nigerian').html('Non Nigerian'));
+      $("#id_LGA_of_residence").append($("<option></option>").val('Non Nigerian').html('Non Nigerian'));
    }
  }
+ $("#telephone").on("keyup",function(){
+   document.getElementById('telephone').value=iti.getNumber()
+ })
  function getLGAResidence(objState){
-   if(objState === 'Not Applicable'){
+   if(objState === 'Non Nigerian'){
 
    }
    else{

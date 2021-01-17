@@ -5,23 +5,128 @@
 {% block extrastyle %}{{ block.super }}
 <link rel="stylesheet" type="text/css" href="{% static "adminoverwrite/css/dashboard.css" %}">
 <style >
+  #myTable8{
+    width:50%;
+    margin:auto;
+    float:left;
+    overflow:scroll;
+  }
+  #myTable8 button{
+    background-color: red;
+    width: 40%;
+  }
+  #savecategory{
+ margin: 1.7%;
+ width: 10%;
+ font-size: 14px;
+ line-height: 0;
+  }
   th {
   cursor: pointer;
 }
-
-@media only screen and (max-width:580px){
+.editbtn{
+  border: 1px solid #008753;
+background-color: #008753;
+color: white;
+line-height: 1.5;
+width: 80%;
+cursor: pointer;
+}
+.triggerpost{
+  text-align: center;
+      color: #fff;
+      font-size: 14px;
+      line-height: 2.8;
+      border: 1px #008753;
+      background-color: #008753;
+      width:100%;
+}
+@media only screen and (max-width: 768px){
+  #savecategory{
+    margin: auto;
+    width: 50%;
+    font-size: 14px;
+    line-height: 2.5;
+  }
+  .modal {
+    overflow: auto;
+    width:auto
+  }
+  .modal-wrapper.open .modal{
+    top: 40%;
+    left: 40%;
+  }
 .nav-btn {
 width:100vw;
 background-color: #008753;
 height:10vh;
 }
+tr.alt {
+    background: #f6f6f6;
+}
+
+tr:nth-child(odd), .row-form-errors {
+    background: #fff;
+}
+
+tr:nth-child(even),
+tr:nth-child(even) .errorlist,
+tr:nth-child(odd) + .row-form-errors,
+tr:nth-child(odd) + .row-form-errors .errorlist {
+    background: #f9f9f9;
+}
+thead th{
+  padding: 5px 10px;
+line-height: normal;
+text-transform: uppercase;
+background: #008753;
+color:#fff;
+}
+.trigger, .trigger5, .filterpost{
+  line-height:2.5;
+  font-size: 14px;
+  background-color: #008753;
+  color: #fff;
+  width:100%;
+}
+#myTable8{
+  width:100%;
+}
+#myTable8 button{
+  width:100%;
+}
+
 .hidelogo{
 display:none !important;
 }
 .smallscreen{
-  display:block;
+  display:block !important;
 }
+
+.membersearch > div,.news-search > div{
+  display: block;
+  width: 100% !important;
+  font-size:14px;
+  line-height:2.5;
+  padding: 0.375rem 0.75rem;
+  }
+  .membersearch > div span,.news-search > div span{
+    width: 30% !important;
+    font-size:14px;
+    line-height:2.5;
+    padding: 0.375rem 0.75rem;
+    }
+    #paymentsearch{
+      line-height:2.5;
+    }
 }
+.membersearch > div, .news-search > div{
+  display: flex;
+  font-size:14px;
+  width: 30%;
+  padding: 0.375rem 0.75rem;
+  }
+
 .nav-btn div{
 width:18vw;
 background-color: #fff;
@@ -29,7 +134,9 @@ height:80%;
 float: right;
 margin: 2%;
 border-radius: 5px;
-
+}
+.smallscreen{
+  display:none;
 }
 
 @media only screen and (max-width:580px){
@@ -47,6 +154,7 @@ height: 0.5vh;
   display:none;
 }
 }
+
 </style>
 {% endblock %}
 
@@ -70,7 +178,7 @@ height: 0.5vh;
       <li class="tablinks"><i class="fa fa-fw fa-users"></i><a href="#members" >Members</a></li>
       <li class="tablinks"><i class="fa fa-fw fa-money-bill-wave-alt"></i><a  href="#payments">Payments</a></li>
       <li class="tablinks"><i class="fa fa-fw fa-user-friends"></i><a  href="#referrals">Referrals</a></li>
-      <li class="tablinks"><i class="fa fa-fw fa-comments"></i><a  href="#chats">Chats</a></li>
+      <!-- <li class="tablinks"><i class="fa fa-fw fa-comments"></i><a  href="#chats">Chats</a></li> -->
       <li class="tablinks"><i class="fa fa-fw fa-newspaper"></i><a  href="#news">News</a></li>
       <li class="tablinks smallscreen"><i class="fa fa-fw fa-street-view"></i><a  href="{{ site_url }}">View Site</a></li>
       <li class="tablinks smallscreen"><i class="fa fa-fw fa-key"></i><a  href="{% url 'admin:password_change' %}">Change Password</a></li>
@@ -147,9 +255,9 @@ height: 0.5vh;
           <th> </th><th>Name</th><th>Amount</th>
         </thead>
         <tbody>
-           {% for member in top5new %}
+           {% for list in transactionstop5 %}
             <tr>
-              <td>{{forloop.counter}}</td><td>{{member.first_name}} {{member.last_name}}</td><td>5,000.00</td>
+              <td>{{forloop.counter}}</td><td>{{list.first_name}} {{list.last_name}}</td><td>{{list.amount}}</td>
             </tr>
            {% endfor %}
         </tbody>
@@ -181,34 +289,26 @@ height: 0.5vh;
 <div class="row">
   <div class="" >
     <form class="membersearch my-2 my-lg-0 mr-lg-2">
-                <div class="input-group" style="width: 30%;border: none;">
-                  <input type="text"  placeholder="Search for...">
+                <div class="input-group col30" style="border: none;">
+                  <input type="text"  id="myInput" placeholder="Search for...">
                   <span class="input-group-append">
-                    <button class="" type="button">
-                      <i class="fa fa-fw fa-search"></i>
+                    <button class="trigger" type="button" style="font-size: 14px;" >
+                      <i class="fa fa-fw fa-filter"></i>Filter
                     </button>
                   </span>
                 </div>
-                <div class="col30" style="width: 30%;">
+
+                <div class="col30">
                   <label for="id_action" style="font-size: 18px;padding-right: 3%;">Action</label>
-                  <select name="action" class="form-control" required="" id="id_action" style="width:70%">
-                  <option value="" selected="">--Select--</option>
+                  <select name="action" class="form-control" required="" id="id_action" style="width:70%" onchange="isChecked()">
+                  <option value="noselect" >--Select--</option>
                   <option value="Send SMS">Send SMS</option>
                   <option value="Send Email">Send Email</option>
 
                 </select>
               </div>
-              <div class="col30" style="width: 30%;">
-                <label for="id_action" style="font-size: 18px;padding-right: 3%;">Filter By</label>
-                <select name="action" class="form-control" required="" id="id_action" style="width:70%">
-                <option value="" selected="">--Select--</option>
-                <option value="Send SMS">State Of Origin</option>
-                <option value="Send Email">State Of Residence</option>
-                <option value="Send Email">Country Of Residence</option>
-                <option value="Gender">Gender</option>
-              </select>
 
-              </div>
+
     </form>
   </div>
 
@@ -221,14 +321,14 @@ height: 0.5vh;
     <table id="myTable2" style="width:100%;margin:auto;overflow:scroll">
       <thead>
         <th>
-          <input type="checkbox" name="" value="">
-        </th><th onclick="sortTable(0)">S/N</th><th onclick="sortTable(1)">First Name </th><th onclick="sortTable(2)">Middle Name</th><th onclick="sortTable(3)">Last Name</th><th onclick="sortTable(4)">Email</th><th>Phone</th><th>State Of Residence</th>
+          <input type="checkbox" name="" value="" id="checkAll">
+        </th><th onclick="sortTable(1,this)">S/N</th><th onclick="sortTable(2,this)">First Name </th><th onclick="sortTable(3,this)">Middle Name</th><th onclick="sortTable(4,this)">Last Name</th><th onclick="sortTable(5,this)">Email</th><th>Phone</th><th>State Of Residence</th><th>Edit</th>
       </thead>
-      <tbody>
-         {% for member in top5new %}
-          <tr><td><input type="checkbox" id="user_selection" name="" value=""></td>
+      <tbody id="myTbody2">
+         {% for member in allmemberslist %}
+          <tr><td><input type="checkbox" class="user_selection" name="" value=""></td>
             <td>{{forloop.counter}}</td><td>{{member.first_name}}</td><td> {{member.middle_name}}</td><td> {{member.last_name}}</td><td> {{member.email}}</td>
-            <td>{{member.phone_number}}</td><td> {{member.state_of_residence}}</td>
+            <td>{{member.phone_number}}</td><td>{{member.state_of_residence}}</td><td><button type="button" class="editbtn"name="button" id={{member.id}} onclick="loadedit(this.id)">Edit</button></td>
           </tr>
          {% endfor %}
       </tbody>
@@ -237,16 +337,438 @@ height: 0.5vh;
 </div>
 </div>
 <div class="tab-pane2" id="payments">
-3
+  <div class="row">
+    <div class="" style="width: 100%; margin-bottom: 3%;" >
+      <form class="membersearch">
+                  <div class="input-group" style="width: 30%;border: none;">
+                    <input type="text" id="paymentsearch" placeholder="Search for...">
+                  </div>
+
+      </form>
+    </div>
+
+  </div>
+  <div class="rowfull">
+    <div class="card-header">
+       Transactions List
+    </div>
+    <div class="card-body" style="overflow-x:auto; padding:0">
+      <table id="myTable3" style="width:100%;margin:auto;overflow:scroll">
+        <thead>
+          <th onclick="sortTable(0,this)">S/N</th><th onclick="sortTable(1,this)">Transaction Type</th><th onclick="sortTable(2,this)">Transaction Reference</th><th onclick="sortTable(3,this)">Payment Date</th><th onclick="sortTable(4,this)">Payer Email</th><th onclick="sortTable(5,this)">Payer Name</th><th onclick="sortTable(6,this)">Amount</th><th onclick="sortTable(7,this)">Paymemnt Channel</th><th onclick="sortTable(8,this)">Transaction Status</th>
+        </thead>
+        <tbody id="myTbody3">
+           {% for transaction in transactions %}
+            <tr>
+              <td>{{forloop.counter}}</td><td>{{transaction.payment_type}}</td><td>{{transaction.transaction_reference}}</td><td>{{transaction.date_of_transaction}}</td><td>{{transaction.email}}</td><td>{{transaction.first_name}} {{transaction.last_name}}</td><td>{{transaction.amount}}</td><td>{{transaction.payment_channel}}</td><td>{{transaction.status}}</td>
+            </tr>
+           {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 <div class="tab-pane2" id="referrals">
-4
+  <div class="row">
+    <div class="" >
+      <form class="membersearch my-2 my-lg-0 mr-lg-2">
+                  <div class="input-group col30" style="border: none;">
+                    <input type="text"  id="myreferral" placeholder="Search for...">
+                    <span class="input-group-append">
+                      <button class="trigger5" type="button" style="font-size: 14px;" >
+                        <i class="fa fa-fw fa-filter"></i>Filter
+                      </button>
+                    </span>
+                  </div>
+                  <!-- <div class="col30">
+                    <label for="id_action" style="font-size: 18px;padding-right: 3%;">Action</label>
+                    <select name="action" class="form-control" required="" id="id_action" style="width:70%" onchange="isChecked()">
+                    <option value="noselect" >--Select--</option>
+                    <option value="Send SMS">Send SMS</option>
+                    <option value="Send Email">Send Email</option>
+
+                  </select>
+                </div> -->
+
+
+      </form>
+    </div>
+
+  </div>
+  <div class="rowfull">
+    <div class="card-header">
+       Hit List
+    </div>
+    <div class="card-body" style="overflow-x:auto;">
+      <table id="myTable4" style="width:100%;margin:auto;overflow:scroll">
+        <thead>
+          <th>
+            <input type="checkbox" name="" value="" id="checkAll">
+          </th><th onclick="sortTable(1,this)">S/N</th><th onclick="sortTable(2,this)">First Name</th><th onclick="sortTable(3,this)">Last Name</th>
+          <th onclick="sortTable(4,this)">Email</th><th onclick="sortTable(5,this)">Number of times referred</th><th onclick="sortTable(6,this)">Referral 1 Email</th><th onclick="sortTable(7,this)">Referral 2 Email</th>
+          <th onclick="sortTable(8,this)">Referral 3 Email</th>
+        </thead>
+        <tbody id="myTbody4">
+           {% for prospect in hitlist %}
+            <tr><td><input type="checkbox" class="hitlist_selection" name="" value=""></td>
+              <td>{{forloop.counter}}</td><td>{{prospect.first_name}}</td><td> {{prospect.last_name}}</td><td> {{prospect.email}}</td><td> {{prospect.high_frequency}}</td>
+              <td> {{prospect.ref1_email}}</td><td> {{prospect.ref2_email}}</td><td> {{prospect.ref3_email}}</td>
+            </tr>
+           {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 <div class="tab-pane2" id="chats">
 5
 </div>
 <div class="tab-pane2" id="news">
-6
+  <div class="news-wrapper">
+    <div class="print-tab" data-tab-id="1">
+      <ul class="print-tab-menu">
+        <li data-tab-menu="post-tab" ><a>Posts</a></li>
+        <li data-tab-menu="tab2"><a>Categories</a></li>
+        <li data-tab-menu="tab3"><a>Tabs</a></li>
+      </ul>
+      <div class="print-tab-content">
+        <div data-tab-content="post-tab">
+          <div class="row">
+            <div class="" >
+              <form class="news-search">
+                          <div class="col30">
+                            <button class="triggerpost" type="button" style="font-size: 14px;" >
+                              <i class="fa fa-fw fa-plus"></i>Create New Post
+                            </button>
+                          </div>
+                          <div class="input-group col30" style="border: none;">
+                            <input type="text"  id="myInput" placeholder="Search for...">
+                            <span class="input-group-append">
+                              <button class="filterpost" type="button" style="font-size: 14px;" >
+                                <i class="fa fa-fw fa-filter"></i>Filter
+                              </button>
+                            </span>
+                          </div>
+                          <div class="col30">
+                            <label for="post_action" style="font-size: 18px;padding-right: 3%;">Action</label>
+                            <select name="action" class="form-control" required="" id="post_action" style="width:70%" onchange="isPostChecked()">
+                            <option value="noselect" >--Select--</option>
+                            <option value="Publish">Publish</option>
+                            <option value="Unpublish">Unpublish</option>
+                            <option value="Delete">Delete</option>
+                          </select>
+                        </div>
+              </form>
+            </div>
+.          </div>
+<div class="card-body" style="overflow-x:auto; padding:0">
+  <table id="myTable7" style="width:100%;margin:auto;overflow:scroll">
+    <thead><th><input type="checkbox" name="" value="" id="checkAllPosts"></th>
+      <th onclick="sortTable(0,this)">S/N</th><th onclick="sortTable(1,this)">Title</th><th onclick="sortTable(2,this)">Author</th><th onclick="sortTable(3,this)">Date created</th><th onclick="sortTable(4,this)">Category</th><th onclick="sortTable(5,this)">Status</th><th>Edit</th>
+    </thead>
+    <tbody id="myTbody7">
+       {% for entry in news %}
+        <tr><td><input type="checkbox" class="post_selection" name="" value="{{entry.id}}"></td>
+          <td>{{forloop.counter}}</td><td>{{entry.title}}</td><td>{{entry.author}}</td><td>{{entry.created_on}}</td><td>{{entry.category}}</td><td>{% if entry.status == 0 %}Draft{%else%}Published{%endif%}</td>
+          <td><button type="button" class="editbtn"name="button" id={{entry.id}}  onclick="loadpost(this.id)">Edit</button></td>
+        </tr>
+       {% endfor %}
+    </tbody>
+  </table>
 </div>
+        </div>
+        <div data-tab-content="tab2">
+          <form class="register-form" id="" method="post" style="margin-top: 2%;">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="E8JBRHTY9kDGRzHesWT7986x73AYF5AxSOLZr46Jm5DDGtCUnzDCmmzfyXNmxuYw">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="id_category_name">Category Name</label>
+                                        <input type="text" name="id_category_name" class="form-control" maxlength="70" required id="id_category_name">
+                                    </div>
+                                </div>
+                                <button class="btn-save" id="savecategory" type="button" style="" >
+                                  <i class="fa fa-fw fa-plus"></i>Add
+                                </button>
+                                </form>
+                                <div class="card-body" style="overflow-x:auto; padding:0">
+                                  <table id="myTable8" style="">
+                                    <thead>
+                                      <th onclick="sortTable(0,this)">S/N</th><th onclick="sortTable(1,this)">Category Title</th><th>Delete</th>
+                                    </thead>
+                                    <tbody id="myTbody8">
+                                       {% for entry in categories %}
+                                        <tr>
+                                          <td>{{forloop.counter}}</td><td>{{entry.title}}</td>
+                                          <td><button type="button" style="" class="btn-save "name="button" id={{entry.id}} onclick="deletecategory(this.id)">Delete</button></td>
+                                        </tr>
+                                       {% endfor %}
+                                    </tbody>
+                                  </table>
+                                </div>
 
+        </div>
+        <div data-tab-content="tab3"><p>Tags</p></div>
+    </div>
+    </div>
+    </div>
+</div>
+<div class="modal-wrapper">
+  <div class="modal">
+    <div class="head">
+      <p style="color:#fff;margin-top: -2%;">Create Filters</p>
+      <a class="btn-close trigger" href="javascript:;"></a>
+    </div>
+    <div class="content2">
+      <div class="sidebar2">
+        <nav>
+          <div class="tab">
+          <ul style="margin:0;">
+            <li class="filterlinks active"><a href="#filter_state_of_residence">State Of Residence</a></li>
+            <li class="filterlinks"><a href="#filter_gender">Gender</a></li>
+            <li class="filterlinks"><a href="#filter_state_of_origin">State of Origin</a></li>
+            <li class="filterlinks"><a href="#filter_country_of_residence">Country Of Residence</a></li>
+        </ul>
+        </div>
+        </nav>
+      </div>
+      <div class="divider"></div>
+      <div class="main-content-filter">
+        <div class="filter-pane" id="filter_state_of_residence">
+          <table id="filter_state_of_residence_table" style="width: 100%;"></table>
+        </div>
+        <div class="filter-pane" id="filter_gender">
+          <table id="filter_gender_table" style="width: 100%;">
+             <tr>
+               <td><input type='checkbox' id='check_gender' style='margin:5%' value='Female'/>Female</td>
+               <td>"<input type='checkbox' id='check_gender' style='margin:5%' value='Male'/>Male</td>
+             </tr>
+          </table>
+        </div>
+        <div class="filter-pane" id="filter_state_of_origin">
+          <table id="filter_state_of_origin_table" style="width: 100%;"> </table>
+        </div>
+        <div class="filter-pane" id="filter_country_of_residence">
+          <div class="" style="overflow-y:scroll;height:350px">
+            <table id="filter_country_of_residence_table"></table>
+          </div>
+        </div>
+        <div class="apply-filter">
+          <button class="btn-apply-filter" type="button" style="font-size: 14px;" >
+            Apply Filters
+          </button>
+          <button class="btn-clear-filter" type="button" style="font-size: 14px;" >
+            Clear Filters
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="sms-wrapper">
+  <div class="modal" style="width:55%">
+    <div class="head">
+      <p style="color:#fff;margin-top: -2%;">Send SMS</p>
+      <a class="btn-close trigger2" href="javascript:;"></a>
+    </div>
+    <div class="sms-content">
+      <form class="row register-form"  id="sendSMSForm" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              {{sendsmsform.sendto.errors}}
+              <label for="{{ sendsmsform.sendto.id_for_label }}" >Send To</label>
+              {{sendsmsform.sendto}}
+            </div>
+            <div class="form-group">
+              {{sendsmsform.text_message.errors}}
+              <label for="{{ sendsmsform.text_message.id_for_label }}">Message</label>
+              {{sendsmsform.text_message}}
+            </div>
+            <button type="button" class="btn-send" id="btn-send" >Send</button>
+      </form>
+      </div>
+
+    </div>
+  </div>
+  <div class="email-wrapper">
+    <div class="modal">
+      <div class="head">
+        <p style="color:#fff;margin-top: -2%;">Send Email</p>
+        <a class="btn-close trigger3" href="javascript:;"></a>
+      </div>
+      <div class="email-content">
+        <form class="row register-form" data-verify-transaction-url ="{% url 'accounts:verify_transaction' %}" id="sendEMAILForm" method="post">
+              {% csrf_token %}
+              <div class="form-group">
+                {{sendemailform.recipient.errors}}
+                <label for="{{ sendemail.recipient.id_for_label }}" style="padding: 1%;">Send To</label>
+                {{sendemailform.recipient}}
+              </div>
+              <div class="form-group" style="width:100%">
+                {{sendemailform.subject.errors}}
+                <label for="{{ sendemailform.subject.id_for_label }}" style="padding: 1%;">Subject</label>
+                {{sendemailform.subject}}
+              </div>
+              <div class="form-group">
+                {{sendemailform.mail_message.errors}}
+                <label for="{{ sendemailform.mail_message.id_for_label }}" style="padding: 0.5%;">Message</label>
+                {{sendemailform.mail_message}}
+              </div>
+              <div class="form-group" style="width: 100%;">
+              <button type="button" class="btn-email" id="btn-email" >Send</button>
+              </div>
+        </form>
+      </div>
+    </div>
+    </div>
+  <div class="profile-wrapper">
+    <div class="modal">
+      <div class="head">
+        <p style="color:#fff;margin-top: -2%;">Edit Profile</p>
+        <a class="btn-close trigger4" href="javascript:;"></a>
+      </div>
+      <div class="profile-content">
+        <div class="" style="overflow-y:scroll;height: 420px;overflow-x: hidden;">
+          <p class="register-heading" style="color:red">{% if error_message %}<strong>{{ error_message }}</strong>{% endif %}</p>
+            <form class="register-form" id="" method="post" style="margin-top: 15%;">
+                  {% csrf_token %}
+                              <div class="col-md-4">
+                                  <div class="form-group">
+                                      {{form.first_name.errors}}
+                                      <label for="{{ form.first_name.id_for_label }}">First Name</label>
+                                      {{form.first_name}}
+                                  </div>
+                                  <div class="form-group">
+                                    {{form.middle_name.errors}}
+                                    <label for="{{ form.middle_name.id_for_label }}">Middle Name</label>
+                                    {{form.middle_name}}
+                                  </div>
+                                  <div class="form-group">
+                                    {{form.last_name.errors}}
+                                    <label for="{{ form.last_name.id_for_label }}">Last Name</label>
+                                    {{form.last_name}}
+                                  </div>
+                                  <div class="form-group">
+                                    {{form.gender.errors}}
+                                    <label for="{{ form.gender.id_for_label }}">Gender</label>
+                                    {{form.gender}}
+                                  </div>
+                                  <div class="form-group">
+                                    {{form.date_of_birth.errors}}
+                                    <label for="{{ form.date_of_birth_for_label }}">Date of Birth</label>
+                                      {{ form.date_of_birth }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{form.marital_status.errors}}
+                                        <label for="{{ form.marital_status_for_label }}">Marital Status</label>
+                                        {{form.marital_status}}
+                                    </div>
+                                  </div>
+                              <div class="col-md-4">
+                                <div class="form-group">
+                                  {{form.country_of_residence.errors}}
+                                  <label for="{{ form.country_of_residence.id_for_label }}">Country of residence</label>
+                                  {{form.country_of_residence}}
+                                </div>
+                                <div class="form-group">
+                                  {{form.state_of_residence.errors}}
+                                  <label for="{{ form.state_of_residence.id_for_label }}">State of residence</label>
+                                  {{form.state_of_residence}}
+                                </div>
+                                <div class="form-group">
+                                  {{form.LGA_of_residence.errors}}
+                                  <label for="{{ form.LGA_of_residence.id_for_label }}">LGA of residence</label>
+                                  {{form.LGA_of_residence}}
+                                </div>
+                                <div class="form-group">
+                                  {{form.state_of_origin.errors}}
+                                  <label for="{{ form.state_of_origin.id_for_label }}">State of Origin</label>
+                                  {{form.state_of_origin}}
+                                </div>
+                                <div class="form-group">
+                                  {{form.LGA.errors}}
+                                  <label for="{{ form.LGA.id_for_label }}">LGA</label>
+                                  {{form.LGA}}
+                                </div>
+
+                            </div>
+                              <div class="col-md-4">
+                                <div class="form-group">
+                                  {{form.current_occupation.errors}}
+                                  <label for="{{ form.date_of_registration.id_for_label }}">Current Occupation</label>
+                                  {{ form.current_occupation }}
+                              </div>
+                                <div class="form-group">
+                                  {{form.phone_number.errors}}
+                                  <label for="{{ form.phone_number.id_for_label }}">Phone Number</label>
+                                  {{form.phone_number}}
+                                </div>
+
+                                <div class="form-group">
+                                  {{form.whatsapp_number.errors}}
+                                  <label for="{{ form.whatsapp_number.id_for_label }}">Whatsapp Number</label>
+                                  {{form.whatsapp_number}}
+                                </div>
+
+                                  <div class="form-group">
+                                    {{form.email.errors}}
+                                    <label for="{{ form.email.id_for_label }}">Email</label>
+                                    {{form.email}}
+                                </div>
+                                <div class="form-group">
+                                    {{form.date_of_registration}}
+                                  {{form.highest_academic_qualification.errors}}
+                                  <label for="{{ form.highest_academic_qualification.id_for_label }}">Highest Academic Qualification</label>
+                                  {{form.highest_academic_qualification}}
+                                </div>
+                              </div>
+                              <button type="button" class="btn btn-save" id="btn-save" style="margin: auto;"  >Save Changes</button>
+                          </form>
+        </div>
+  </div>
+  </div>
+  </div>
+  <div class="post-wrapper">
+    <div class="modal" style="width:69.5%">
+      <div class="head">
+        <p style="min-width: 100%;display: inline;color:#fff;margin-top: -2%;">Create New Post</p>
+        <a class="btn-close triggerpost" href="javascript:;"></a>
+      </div>
+      <div class="post-content" style="overflow-x:hidden;overflow-y:scroll;height:80vh;margin-right: 0;">
+        <div style="margin:2% 3%">
+          <form id="postform" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+              {{postform}}
+
+            </div>
+
+            <button type="button" class="btn-send" onclick="createPost()">Create</button>
+          </form>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="edit-post-wrapper">
+      <div class="modal" style="width:69.5%">
+        <div class="head">
+          <p style="min-width: 100%;display: inline;color:#fff;margin-top: -2%;">Edit Post</p>
+          <a class="btn-close trigger8" href="javascript:;"></a>
+        </div>
+        <div class="edit-post-content" style="overflow-x:hidden;overflow-y:scroll;height:80vh;margin-right: 0;">
+          <div style="margin:2% 3%">
+            <form id="postform" action="" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <input type="hidden" id="postid" value="">
+              <div class="form-group">
+                {{editpostform}}
+
+              </div>
+
+              <button type="button" class="btn-send" id="btn-edit-post" onclick="editPost()">Save</button>
+            </form>
+          </div>
+        </div>
+        </div>
+      </div>
 {% endblock %}
