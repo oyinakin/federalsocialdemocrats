@@ -23,7 +23,6 @@ from .forms import MemberForm, HitListForm, LoginForm, sendSMSForm,sendEmailForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 from django.template.response import TemplateResponse
-from twilio.rest import Client
 from django.conf import settings
 import requests, json
 class Month(Func):
